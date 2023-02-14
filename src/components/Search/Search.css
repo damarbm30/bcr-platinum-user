@@ -1,0 +1,45 @@
+label,
+input,
+select {
+  font-size: 0.75rem !important;
+}
+
+.search__container {
+  position: relative;
+  padding-bottom: 6.25em;
+  z-index: 1000;
+}
+
+.search__wrapper {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.form-button {
+  width: 12.5% !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--green);
+  box-shadow: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .search__container {
+    position: static;
+    margin-top: 3rem;
+    padding-bottom: 0;
+  }
+
+  .search__wrapper {
+    position: static;
+    left: 0;
+    transform: none;
+  }
+
+  .form-button {
+    width: 100% !important;
+  }
+}

@@ -1,0 +1,55 @@
+:root {
+  --bgColor: #f1f3ff;
+  --green: rgba(92, 184, 95, 1);
+  --green-50: rgba(92, 184, 95, 0.5);
+  --blue: #0d28a6;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+p {
+  font-size: 0.875rem;
+  margin-bottom: 0 !important;
+}
+
+h1,
+h2 {
+  margin-bottom: 0 !important;
+}
+
+.bg-blue {
+  background-color: var(--blue) !important;
+}
+
+.btn-green {
+  background-color: var(--green) !important;
+}
+
+.btn-green:hover {
+  background-color: var(--green-50) !important;
+}
+
+.section-pt {
+  padding-top: 6.25em;
+}
+
+.section-pb {
+  padding-bottom: 6.25em;
+}
+
+@media only screen and (max-width: 768px) {
+  .section-pt {
+    padding-top: 3.75em;
+  }
+
+  .section-pb {
+    padding-bottom: 3.75em;
+  }
+}
