@@ -1,5 +1,5 @@
 # Prerequisites
-Untuk dapat menjalankan aplikasi, lakukan perintah di bawah ini agar dependencies yang ada ikut terinstall secara otomatis
+Install dependencies yang secara otomatis
 ```
 npm install@latest
 ```
