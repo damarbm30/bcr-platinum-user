@@ -1,0 +1,4 @@
+.fpage {
+  display: flex;
+  flex-direction: row;
+}

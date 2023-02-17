@@ -12,6 +12,7 @@ import car from "./img_car.svg";
 import service from "./img_service.svg";
 import logo from "./logo.svg";
 import users from "./fi_users.svg";
+import register from "./register.svg";
 
 export {
   time,
@@ -28,4 +29,5 @@ export {
   service,
   logo,
   users,
+  register,
 };
