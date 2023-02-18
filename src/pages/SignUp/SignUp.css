@@ -9,6 +9,27 @@
   padding-left: 175px;
   padding-right: 175px;
 }
+.inputform {
+  margin-bottom: 15px;
+}
 .halfpic {
   width: 50%;
+  display: block;
+}
+.tombol-signup {
+  margin-top: 10px;
+  padding: 10px 20px;
+}
+@media only screen and (max-width: 768px) {
+  .halfpic {
+    display: none;
+  }
+  .halfform {
+    width: 100%;
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+  .inputform {
+    margin-bottom: 10px;
+  }
 }
