@@ -1,4 +1,14 @@
 .fpage {
   display: flex;
   flex-direction: row;
+  align-items: center;
+}
+.halfform {
+  width: 50%;
+  flex-direction: column;
+  padding-left: 175px;
+  padding-right: 175px;
+}
+.halfpic {
+  width: 50%;
 }

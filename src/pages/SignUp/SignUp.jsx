@@ -1,29 +1,58 @@
 import React from "react";
-import { register } from "../../assets";
+import { register, kutak } from "../../assets";
 import { HashLink } from "react-router-hash-link";
+import { useState } from "react";
 import "./SignUp.css";
 
 const SignUp = () => {
+  const [name, setName] = useState([]);
+  const [email, setEmail] = useState([]);
+  const [password, setPassword] = useState([]);
+
   return (
     <div className="fpage">
       <div className="halfform">
         <div className="jdl">
-          <div> ICON </div>
+          <img src={kutak} alt="register" />
           <h1>Sign Up</h1>
         </div>
         <form className="signup">
           <label htmlFor="name">Name*</label>
-          <input className="form-control" placeholder="Nama Lengkap" />
+          <input
+            className="form-control"
+            placeholder="Nama Lengkap"
+            onInput={(e) => {
+              setName(e.target.value);
+            }}
+          />
           <label htmlFor="name">Email*</label>
           <input
             className="form-control"
             placeholder="Contoh: johndee@gmail.com"
+            onInput={(e) => {
+              setEmail(e.target.value);
+            }}
           />
           <label htmlFor="name">Create Password*</label>
-          <input className="form-control" placeholder="6+ karakter" />
+          <input
+            className="form-control"
+            placeholder="6+ karakter"
+            onInput={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
           <button role="button" type="submit">
             SignUp
           </button>
+          <div>
+            <h1>{name}</h1>
+          </div>
+          <div>
+            <h1>{email}</h1>
+          </div>
+          <div>
+            <h1>{password}</h1>
+          </div>
         </form>
         <div className="kelogin">
           <p>
