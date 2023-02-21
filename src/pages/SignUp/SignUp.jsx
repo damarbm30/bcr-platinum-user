@@ -2,12 +2,25 @@ import React from "react";
 import { register, kutak } from "../../assets";
 import { HashLink } from "react-router-hash-link";
 import { useState } from "react";
+import Validation from "./Validation";
 import "./SignUp.css";
 
 const SignUp = () => {
-  const [name, setName] = useState([]);
-  const [email, setEmail] = useState([]);
-  const [password, setPassword] = useState([]);
+  const [values, setValues] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+  const [errors, setErrors] = useState({});
+
+  const handleInput = (e) => {
+    setValues({ ...values, [e.target.name]: [e.target.value] });
+  };
+
+  function handleValidation(e) {
+    e.preventDefault();
+    setErrors(Validation(values));
+  }
 
   return (
     <div className="fpage">
@@ -16,50 +29,44 @@ const SignUp = () => {
           <img src={kutak} alt="register" />
           <h1>Sign Up</h1>
         </div>
-        <form className="signup">
+        <form className="signup" onSubmit={handleValidation}>
           <div className="inputform">
             <label htmlFor="name">Name*</label>
             <input
               className="form-control"
               placeholder="Nama Lengkap"
-              onInput={(e) => {
-                setName(e.target.value);
-              }}
+              name="name"
+              onChange={handleInput}
             />
+            {errors.name && <p style={{ color: "red" }}>{errors.name}</p>}
           </div>
           <div className="inputform">
-            <label htmlFor="name">Email*</label>
+            <label htmlFor="email">Email*</label>
             <input
               className="form-control"
               placeholder="Contoh: johndee@gmail.com"
-              onInput={(e) => {
-                setEmail(e.target.value);
-              }}
+              name="email"
+              onChange={handleInput}
             />
+            <p>{errors.email}</p>
+            {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
           </div>
           <div className="inputform">
-            <label htmlFor="name">Create Password*</label>
+            <label htmlFor="password">Create Password*</label>
             <input
               className="form-control"
               placeholder="6+ karakter"
-              onInput={(e) => {
-                setPassword(e.target.value);
-              }}
+              name="password"
+              onChange={handleInput}
             />
+            {errors.password && (
+              <p style={{ color: "red" }}>{errors.password}</p>
+            )}
           </div>
           <div className="inputform">
             <button role="button" type="submit" className="tombol-signup">
               SignUp
             </button>
-          </div>
-          <div>
-            <h1>{name}</h1>
-          </div>
-          <div>
-            <h1>{email}</h1>
-          </div>
-          <div>
-            <h1>{password}</h1>
           </div>
         </form>
         <div className="kelogin">
