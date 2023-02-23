@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { register, kutak } from "../../assets";
 import { HashLink } from "react-router-hash-link";
 import Validation from "./Validation";
 import { isEmpty, get } from "lodash";
-// import { useHistory } from "react-router-dom";
 import "./SignUp.css";
 
 const SignUp = () => {
-  // const history = useHistory();
   async function daftar() {
     console.log(values);
     let result = await fetch(
@@ -23,8 +21,6 @@ const SignUp = () => {
     );
     result = await result.json();
     console.warn("result", result);
-    // localStorage.setItem("user-info", JSON.stringify(result));
-    // history.push("/SignUp");
   }
 
   const [values, setValues] = useState({
@@ -46,6 +42,7 @@ const SignUp = () => {
     console.log(error);
     if (isEmpty(error)) {
       daftar();
+      alert("Sign Up Berhasil...!");
     } else {
       setErrors(error);
     }
@@ -87,7 +84,7 @@ const SignUp = () => {
             <label htmlFor="password">Create Password*</label>
             <input
               className="form-control"
-              placeholder="6+ karakter"
+              placeholder="Wajib 6+ karakter dengan gabungan huruf kapital dan angka"
               name="password"
               onChange={handleInput}
             />
