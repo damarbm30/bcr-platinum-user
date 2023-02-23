@@ -17,7 +17,7 @@ export const Picker = () => {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Stack spacing={3}>
         <DesktopDatePicker
-        label="Date desktop"
+        label="Booking in"
         inputFormat="MM/DD/YYYY"
         value={value}
         onChange={handleChange}

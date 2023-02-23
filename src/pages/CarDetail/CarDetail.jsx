@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { users } from "../../assets";
-
+import Picker from "./DatePicker/Picker";
 import { Header, Search } from "../../components";
 
 const CarDetail = ({ cars, setCars, isFiltered }) => {
@@ -49,6 +49,10 @@ const CarDetail = ({ cars, setCars, isFiltered }) => {
                         {peopleCap}
                       </p>
                     </div>
+                  </div>
+                  <div className="div">
+                    <Picker />
+                    <Picker />
                   </div>
                   <div className="d-flex justify-content-between fw-bold">
                     <p>Total</p>
