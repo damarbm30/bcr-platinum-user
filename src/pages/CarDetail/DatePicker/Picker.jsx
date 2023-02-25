@@ -6,21 +6,34 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 
+
 export const Picker = () => {
-  const [value, setValue] = React.useState(dayjs("2014-08-18T21:11:54"));
-
-  const handleChange = (newValue) => {
-    setValue(newValue);
+  const [start, setStart] = React.useState()
+  const [end, setEnd] = React.useState()
+  const handleChangeStart = (newValue) => {
+    setStart(newValue);
+    console.log(start)
   };
-
+  const handleChangeEnd = (newValue) => {
+    setEnd(newValue);
+    console.log(end)
+  };
+  
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Stack spacing={3}>
         <DesktopDatePicker
-        label="Booking in"
+        label="Start Book"
         inputFormat="MM/DD/YYYY"
-        value={value}
-        onChange={handleChange}
+        value={start}
+        onChange={handleChangeStart}
+        renderInput={(params) => <TextField {...params} />} />
+
+        <DesktopDatePicker
+        label="End Book"
+        inputFormat="MM/DD/YYYY"
+        value={end}
+        onChange={handleChangeEnd}
         renderInput={(params) => <TextField {...params} />} />
       </Stack>
     </LocalizationProvider>

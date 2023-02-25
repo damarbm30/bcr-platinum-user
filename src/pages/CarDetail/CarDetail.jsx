@@ -51,12 +51,14 @@ const CarDetail = ({ cars, setCars, isFiltered }) => {
                     </div>
                   </div>
                   <div className="div">
-                    <Picker />
-                    <Picker />
+                    <Picker />                    
                   </div>
                   <div className="d-flex justify-content-between fw-bold">
                     <p>Total</p>
                     <span>{formattedPrice}</span>
+                  </div>
+                  <div className="d-grid gap-2">
+                    <button className="btn btn-primary" type="button">Button</button>
                   </div>
                 </div>
               </div>
