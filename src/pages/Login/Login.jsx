@@ -4,39 +4,22 @@ import { HashLink } from "react-router-hash-link";
 import Validation from "./Validation";
 import axios from "axios";
 import {isEmpty, get } from "lodash";
-import Swal from "sweetalert2";
 import "./Login.css";
 
 const Login = () => {
   async function masuk() {
-    try {
-    console.log(values);
-    let result = await fetch(
-      "https://bootcamp-rent-cars.herokuapp.com/customer/auth/login",
-      {
-        method: "POST",
-        body: JSON.stringify(values),
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      }
-    );
-    result = await result.json();
-    console.warn("result", result);
-    } catch (error) {
-        authError(error);
-        Swal.fire({
-          position: 'top-end',
-          icon: 'error',
-          title: 'Email atau Password salah!',
-          showConfrimButton: false,
-          timer: 1500
-        });
-    }
+    axios
+    .post("https://bootcamp-rent-cars.herokuapp.com/customer/auth/login")
+    .then((res) => {
+        console.log(res);
+        localStorage.setItem('token', res.data.access_token)
+    })
+    .catch((err) => {
+        console.log(err.message)
+        alert('Email atau Password salah')
+    })
   }
   const [values, setValues] = useState({
-    name: "",
     email: "",
     password: "",
   });
@@ -47,14 +30,13 @@ const Login = () => {
     console.log(values);
   };
 
-  function handleValidation(e) {
+  function handleLogin(e) {
     e.preventDefault();
     console.log("masuk");
     const error = Validation(values);
     console.log(error);
     if (isEmpty(error)) {
       masuk();
-      alert("Sign In Berhasil...!");
     } else {
       setErrors(error);
     }
@@ -67,7 +49,7 @@ const Login = () => {
           <img src={kutak} alt="SignIn" />
           <h1>Welcome Back!</h1>
         </div>
-        <form className="login" onSubmit={handleValidation}>
+        <form className="login" onSubmit={handleLogin}>
           <div className="inputform">
             <label htmlFor="email">Email*</label>
             <input
