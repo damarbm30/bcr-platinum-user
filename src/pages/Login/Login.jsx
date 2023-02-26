@@ -9,9 +9,7 @@ import "./Login.css";
 const Login = () => {
   async function masuk(values) {
     axios
-    .post("https://bootcamp-rent-cars.herokuapp.com/customer/auth/login" ,{
-      values
-    })
+    .post("https://bootcamp-rent-cars.herokuapp.com/customer/auth/login" , values)
     .then((res) => {
         console.log(res);
         console.log('masuk res', res)
@@ -42,6 +40,7 @@ const Login = () => {
     console.log(error);
     if (isEmpty(error)) {
       masuk(values);
+      alert('Sign in berhasil!');
     } else {
       setErrors(error);
     }
