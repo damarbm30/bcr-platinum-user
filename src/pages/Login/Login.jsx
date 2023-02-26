@@ -1,53 +1,117 @@
-import React, { useState, useEffect } from "react";
-import { Container, Form, Button } from "react-bootstrap";
-import { Navigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import Swal from 'sweetalert2';
-import { FormLogin } from "./Verification";
-
+import React, { useState } from "react";
+import { register, kutak } from "../../assets";
+import { HashLink } from "react-router-hash-link";
+import Validation from "./Validation";
+import axios from "axios";
+import {isEmpty, get } from "lodash";
+import Swal from "sweetalert2";
+import "./Login.css";
 
 const Login = () => {
-    const dispatch = useDispatch();
-    // const { isAuthenticated, error } = useSelector((state) => state.auth);
+  async function masuk() {
+    try {
+    console.log(values);
+    let result = await fetch(
+      "https://bootcamp-rent-cars.herokuapp.com/customer/auth/login",
+      {
+        method: "POST",
+        body: JSON.stringify(values),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      }
+    );
+    result = await result.json();
+    console.warn("result", result);
+    } catch (error) {
+        authError(error);
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: 'Email atau Password salah!',
+          showConfrimButton: false,
+          timer: 1500
+        });
+    }
+  }
+  const [values, setValues] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+  const [errors, setErrors] = useState({});
 
-    useEffect(() => {
-        if (error) {
-            alert(error);
-        }
-    }, [error]);
+  const handleInput = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+    console.log(values);
+  };
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+  function handleValidation(e) {
+    e.preventDefault();
+    console.log("masuk");
+    const error = Validation(values);
+    console.log(error);
+    if (isEmpty(error)) {
+      masuk();
+      alert("Sign In Berhasil...!");
+    } else {
+      setErrors(error);
+    }
+  }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (email === "") {
-            Swal.fire({
-                position: 'top-end',
-                icon: 'warning',
-                title: 'Mohon Masukan Email',
-                showConfirmButton: false,
-                timer: 1000
-            });
-        }
-        if (password === "") {
-            Swal.fire({
-                position: 'top-end',
-                icon: 'warning',
-                title: 'Password tidak boleh kosong',
-                showConfirmButton: false,
-                timer: 1000
-            });
-        }
-        if (email !== "" && password !== "") {
-            dispatch(FormLogin({ email, password }));
-        }
-    };
-return (
-    <>
-    
-    </>
-);
+  return (
+    <div className="fpage">
+      <div className="halfform">
+        <div className="jdl">
+          <img src={kutak} alt="SignIn" />
+          <h1>Welcome Back!</h1>
+        </div>
+        <form className="login" onSubmit={handleValidation}>
+          <div className="inputform">
+            <label htmlFor="email">Email*</label>
+            <input
+              className="form-control"
+              placeholder="eg: johndee@gmail.com"
+              name="email"
+              onChange={handleInput}
+            />
+            {get(errors, "email") && (
+              <p style={{ color: "red" }}>{get(errors, "email")}</p>
+            )}
+          </div>
+          <div className="inputform">
+            <label htmlFor="password">Password*</label>
+            <input
+              className="form-control"
+              placeholder="Masukkan password"
+              name="password"
+              onChange={handleInput}
+            />
+            {get(errors, "password") && (
+              <p style={{ color: "red" }}>{get(errors, "password")}</p>
+            )}
+          </div>
+          <div className="inputform">
+            <button role="button" type="submit" className="tombol-signup">
+              Sign In
+            </button>
+          </div>
+        </form>
+        <div className="kedaftar">
+          <p>
+            Don't have an account?
+            <HashLink to="" className="text-blue">
+              Sign Up Here!
+            </HashLink>
+          </p>
+        </div>
+      </div>
+      <div className="halfpic">
+        <img src={register} alt="register" />
+      </div>
+    </div>
+  );
 };
 
 export default Login;

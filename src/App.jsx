@@ -25,9 +25,22 @@ function App() {
         <Route
           index
           path="/cars"
-          element={<Cars cars={cars} setCars={setCars} isFiltered={isFiltered} setIsFiltered={setIsFiltered} />}
+          element={
+            <Cars
+              cars={cars}
+              setCars={setCars}
+              isFiltered={isFiltered}
+              setIsFiltered={setIsFiltered}
+            />
+          }
         />
-        <Route index path="/car/:carId" element={<CarDetail cars={cars} setCars={setCars} isFiltered={isFiltered} />} />
+        <Route
+          index
+          path="/car/:carId"
+          element={
+            <CarDetail cars={cars} setCars={setCars} isFiltered={isFiltered} />
+          }
+        />
       </Routes>
       <Footer />
     </>
