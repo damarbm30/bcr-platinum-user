@@ -7,15 +7,20 @@ import {isEmpty, get } from "lodash";
 import "./Login.css";
 
 const Login = () => {
-  async function masuk() {
+  async function masuk(values) {
     axios
-    .post("https://bootcamp-rent-cars.herokuapp.com/customer/auth/login")
+    .post("https://bootcamp-rent-cars.herokuapp.com/customer/auth/login" ,{
+      values
+    })
     .then((res) => {
         console.log(res);
+        console.log('masuk res', res)
         localStorage.setItem('token', res.data.access_token)
     })
     .catch((err) => {
         console.log(err.message)
+        console.log('masuk catch')
+        alert
         alert('Email atau Password salah')
     })
   }
@@ -36,7 +41,7 @@ const Login = () => {
     const error = Validation(values);
     console.log(error);
     if (isEmpty(error)) {
-      masuk();
+      masuk(values);
     } else {
       setErrors(error);
     }
