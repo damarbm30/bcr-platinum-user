@@ -14,8 +14,8 @@ const CarDetail = ({ cars, setCars, isFiltered }) => {
   const [end, setEnd] = useState();
 
   const handleSubmit = () => {
-    console.log(start)
-    console.log(end)
+    console.log(start.$y, start.$M, start.$D)
+    console.log(end.$y, end.$M, end.$D)
   };
 
   const formatter = new Intl.NumberFormat("id-ID", {

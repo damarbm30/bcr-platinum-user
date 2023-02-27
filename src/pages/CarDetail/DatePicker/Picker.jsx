@@ -23,14 +23,14 @@ export const Picker = ({start, setStart, end, setEnd}) => {
       <Stack spacing={3}>
         <DesktopDatePicker
         label="Start Book"
-        inputFormat="YYYY/MM//DD"
+        inputFormat="YYYY/MM/DD"
         value={start}
         onChange={handleChangeStart}
         renderInput={(params) => <TextField {...params} />} />
 
         <DesktopDatePicker
         label="End Book"
-        inputFormat="YYYY/MM//DD"
+        inputFormat="YYYY/MM/DD"
         value={end}
         onChange={handleChangeEnd}
         renderInput={(params) => <TextField {...params} />} />
