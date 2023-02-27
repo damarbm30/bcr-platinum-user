@@ -2,12 +2,21 @@ import { useParams } from "react-router-dom";
 import { users } from "../../assets";
 import Picker from "./DatePicker/Picker";
 import { Header, Search } from "../../components";
+import { useState } from "react";
 
 const CarDetail = ({ cars, setCars, isFiltered }) => {
   const { carId } = useParams();
 
   const car = cars.find((car) => car.id.toString() === carId);
   const { name, price, category, image } = car;
+
+  const [start, setStart] = useState();
+  const [end, setEnd] = useState();
+
+  const handleSubmit = () => {
+    console.log(start)
+    console.log(end)
+  };
 
   const formatter = new Intl.NumberFormat("id-ID", {
     style: "currency",
@@ -51,14 +60,16 @@ const CarDetail = ({ cars, setCars, isFiltered }) => {
                     </div>
                   </div>
                   <div className="div">
-                    <Picker />                    
+                    <Picker start={start} end={end} setStart={setStart} setEnd={setEnd} />
                   </div>
                   <div className="d-flex justify-content-between fw-bold">
                     <p>Total</p>
                     <span>{formattedPrice}</span>
                   </div>
                   <div className="d-grid gap-2">
-                    <button className="btn btn-primary" type="button">Button</button>
+                    <button className="btn btn-primary" type="button" disabled={!start || !end} onClick={() => handleSubmit()}>
+                      Pembayaran
+                    </button>
                   </div>
                 </div>
               </div>

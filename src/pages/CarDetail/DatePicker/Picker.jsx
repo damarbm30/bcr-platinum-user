@@ -7,9 +7,8 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 
 
-export const Picker = () => {
-  const [start, setStart] = React.useState()
-  const [end, setEnd] = React.useState()
+export const Picker = ({start, setStart, end, setEnd}) => {
+  
   const handleChangeStart = (newValue) => {
     setStart(newValue);
     console.log(start)
