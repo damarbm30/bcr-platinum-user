@@ -4,6 +4,7 @@ import { HashLink } from "react-router-hash-link";
 import Validation from "./Validation";
 import axios from "axios";
 import {isEmpty, get } from "lodash";
+import Swal from 'sweetalert2';
 import "./Login.css";
 
 const Login = () => {
@@ -14,12 +15,25 @@ const Login = () => {
         console.log(res);
         console.log('masuk res', res)
         localStorage.setItem('token', res.data.access_token)
+        Swal.fire({
+          position: 'middle',
+          icon: 'success',
+          title: 'Selamat Datang',
+          showConfirmButton: false,
+          timer: 1500
+        });
     })
     .catch((err) => {
         console.log(err.message)
         console.log('masuk catch')
-        alert
-        alert('Email atau Password salah')
+        // alert('Email atau Password salah')
+        Swal.fire({
+          position: 'middle',
+          icon: 'error',
+          title: 'Email atau password salah',
+          showConfirmButton: false,
+          timer: 1500
+      });
     })
   }
   const [values, setValues] = useState({
@@ -40,7 +54,6 @@ const Login = () => {
     console.log(error);
     if (isEmpty(error)) {
       masuk(values);
-      alert('Sign in berhasil!');
     } else {
       setErrors(error);
     }
