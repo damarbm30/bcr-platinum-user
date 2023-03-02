@@ -17,11 +17,13 @@
     "axios": "^1.2.2",
     "bootstrap": "^5.2.3",
     "dayjs": "^1.11.7",
+    "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.41.5",
     "react-router-dom": "^6.6.1",
-    "react-router-hash-link": "^2.4.3"
+    "react-router-hash-link": "^2.4.3",
+    "zustand": "^4.3.5"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",
