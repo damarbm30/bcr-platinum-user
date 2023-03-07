@@ -5,7 +5,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import { Footer, Navbar } from "./components";
-import { CarDetail, Cars, Home, Login } from "./pages";
+import { CarDetail, Cars, Home, Login, SignUp } from "./pages";
 import { userLogin } from "./services/auth";
 
 function App() {
@@ -21,9 +21,9 @@ function App() {
       <Navbar />
       <Routes>
         <Route index path="/" element={<Home />} />
-        <Route index path="/login" element={<Login />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/sign-up" element={<SignUp />} />
         <Route
-          index
           path="/cars"
           element={
             <Cars
