@@ -16,7 +16,7 @@ const Login = () => {
         console.log('masuk res', res)
         localStorage.setItem('token', res.data.access_token)
         Swal.fire({
-          position: 'middle',
+          position: 'center',
           icon: 'success',
           title: 'Selamat Datang',
           showConfirmButton: false,
@@ -28,7 +28,7 @@ const Login = () => {
         console.log('masuk catch')
         // alert('Email atau Password salah')
         Swal.fire({
-          position: 'middle',
+          position: 'center',
           icon: 'error',
           title: 'Email atau password salah',
           showConfirmButton: false,
