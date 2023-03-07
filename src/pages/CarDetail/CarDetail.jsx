@@ -1,13 +1,36 @@
 import { useParams } from "react-router-dom";
 import { users } from "../../assets";
-
+import Picker from "./DatePicker/Picker";
 import { Header, Search } from "../../components";
+import { useState } from "react";
+import usePayment from "../../store/Pembayaran";
 
 const CarDetail = ({ cars, setCars, isFiltered }) => {
   const { carId } = useParams();
 
   const car = cars.find((car) => car.id.toString() === carId);
   const { name, price, category, image } = car;
+
+  const [start, setStart] = useState();
+  const [end, setEnd] = useState();
+  const setCarRent = usePayment((state) => state.setCarRent);
+
+  const handleChangeStart = (newValue) => {
+    console.log(new Date(newValue));
+    setStart(new Date(newValue));
+    console.log(start);
+  };
+
+  const handleChangeEnd = (newValue) => {
+    setEnd(new Date(newValue));
+    console.log(end);
+  };
+
+  const handleSubmit = () => {
+    setCarRent({start:start, last:end})
+    console.log(start.$y, start.$M, start.$D);
+    console.log(end.$y, end.$M, end.$D);
+  };
 
   const formatter = new Intl.NumberFormat("id-ID", {
     style: "currency",
@@ -50,9 +73,17 @@ const CarDetail = ({ cars, setCars, isFiltered }) => {
                       </p>
                     </div>
                   </div>
+                  <div className="div">
+                    <Picker start={start} end={end} onChangeStart={handleChangeStart} onChangeEnd={handleChangeEnd} />
+                  </div>
                   <div className="d-flex justify-content-between fw-bold">
                     <p>Total</p>
                     <span>{formattedPrice}</span>
+                  </div>
+                  <div className="d-grid gap-2">
+                    <button className="btn btn-success" type="button" disabled={!start || !end} onClick={() => handleSubmit()}>
+                      Lanjutkan Pembayaran
+                    </button>
                   </div>
                 </div>
               </div>
