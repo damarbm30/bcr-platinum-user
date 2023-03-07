@@ -11,7 +11,10 @@ const Navbar = () => {
         <Link to="/" className="navbar-brand d-none d-sm-block offset-md-1">
           <img src={logo} alt="logo" />
         </Link>
-        <Link to="/" className="navbar-brand offset-md-1 fw-bold d-block d-sm-none">
+        <Link
+          to="/"
+          className="navbar-brand offset-md-1 fw-bold d-block d-sm-none"
+        >
           BCR
         </Link>
         <button
@@ -47,6 +50,14 @@ const Navbar = () => {
                 FAQ
               </HashLink>
             </li>
+            <li className="nav-item">
+              <Link
+                className="nav-link btn btn-success text-white"
+                to="/sign-up"
+              >
+                Register
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
@@ -54,4 +65,3 @@ const Navbar = () => {
   );
 };
 export default Navbar;
-
