@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { register, kutak } from "../../assets";
-import { HashLink } from "react-router-hash-link";
 import Validation from "./Validation";
 import { isEmpty, get } from "lodash";
 import "./SignUp.css";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
   async function daftar() {
@@ -101,9 +101,9 @@ const SignUp = () => {
         <div className="kelogin">
           <p>
             Already have an account?
-            <HashLink to="" className="text-blue">
+            <Link to="/login" className="text-blue">
               Sign in here
-            </HashLink>
+            </Link>
           </p>
         </div>
       </div>
