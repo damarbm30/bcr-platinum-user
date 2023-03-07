@@ -3,26 +3,38 @@ import { register, kutak } from "../../assets";
 import { HashLink } from "react-router-hash-link";
 import Validation from "./Validation";
 import axios from "axios";
-import { isEmpty, get } from "lodash";
+import {isEmpty, get } from "lodash";
+import Swal from 'sweetalert2';
 import "./Login.css";
 
 const Login = () => {
   async function masuk(values) {
     axios
-      .post("https://bootcamp-rent-cars.herokuapp.com/customer/auth/login", {
-        values,
-      })
-      .then((res) => {
+    .post("https://bootcamp-rent-cars.herokuapp.com/customer/auth/login" , values)
+    .then((res) => {
         console.log(res);
-        console.log("masuk res", res);
-        localStorage.setItem("token", res.data.access_token);
-      })
-      .catch((err) => {
-        console.log(err.message);
-        console.log("masuk catch");
-        alert;
-        alert("Email atau Password salah");
+        console.log('masuk res', res)
+        localStorage.setItem('token', res.data.access_token)
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Selamat Datang',
+          showConfirmButton: false,
+          timer: 1500
+        });
+    })
+    .catch((err) => {
+        console.log(err.message)
+        console.log('masuk catch')
+        // alert('Email atau Password salah')
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Email atau password salah',
+          showConfirmButton: false,
+          timer: 1500
       });
+    })
   }
   const [values, setValues] = useState({
     email: "",
