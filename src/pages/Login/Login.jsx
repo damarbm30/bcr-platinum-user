@@ -5,7 +5,7 @@ import Validation from "./Validation";
 import axios from "axios";
 import { isEmpty, get } from "lodash";
 import "./Login.css";
-// import Swal from "sweetalert2";
+import Swal from "sweetalert2";
 
 const Login = () => {
   async function masuk(values) {
@@ -18,25 +18,25 @@ const Login = () => {
         console.log(res);
         console.log("masuk res", res);
         localStorage.setItem("token", res.data.access_token);
-        // Swal.fire({
-        //   position: "center",
-        //   icon: "success",
-        //   title: "Selamat Datang",
-        //   showConfirmButton: false,
-        //   timer: 1500,
-        // });
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Selamat Datang",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       })
       .catch((err) => {
         console.log(err.message);
         console.log("masuk catch");
         // alert('Email atau Password salah')
-        // Swal.fire({
-        //   position: "center",
-        //   icon: "error",
-        //   title: "Email atau password salah",
-        //   showConfirmButton: false,
-        //   timer: 1500,
-        // });
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Email atau password salah",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       });
   }
   const [values, setValues] = useState({
