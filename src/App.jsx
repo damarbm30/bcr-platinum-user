@@ -5,7 +5,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import { Footer, Navbar } from "./components";
-import { CarDetail, Cars, Home, SignUp } from "./pages";
+import { CarDetail, Cars, Home, SignUp, PembayaranAwal } from "./pages";
 import { userLogin } from "./services/auth";
 
 function App() {
@@ -22,6 +22,7 @@ function App() {
       <Routes>
         <Route index path="/" element={<Home />} />
         <Route index path="/signup" element={<SignUp />} />
+        <Route index path="/PembayaranAwal" element={<PembayaranAwal />} />
         <Route
           index
           path="/cars"
