@@ -4,8 +4,8 @@ import { HashLink } from "react-router-hash-link";
 import Validation from "./Validation";
 import axios from "axios";
 import { isEmpty, get } from "lodash";
-import Swal from "sweetalert2";
 import "./Login.css";
+import Swal from "sweetalert2";
 
 const Login = () => {
   async function masuk(values) {
