@@ -8,3 +8,6 @@
   background-color: rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease-in-out;
 }
+.skeleton {
+  height: 160px;
+}
