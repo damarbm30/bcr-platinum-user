@@ -1,0 +1,175 @@
+.form-pembayaran {
+  padding-left: 199px;
+  padding-right: 199px;
+  background-color: #f1f3ff;
+  padding-top: 24px;
+  padding-bottom: 16px;
+}
+/* pembayaran tahap 1 */
+.step-pembayaran {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.step-pembayaran-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.step-pembayaran-left p {
+  padding-left: 10px;
+}
+.step-pembayaran-right {
+  scale: 0.75;
+  width: 330px;
+}
+.detail-pesananmu-bayar {
+  background-color: #f1f3ff;
+}
+.detail-order-car {
+  margin-left: 199px;
+  margin-right: 199px;
+  padding: 24px;
+}
+.deskripsi-order {
+  display: flex;
+  flex-direction: row;
+}
+.detail-deskripsi {
+  width: 25%;
+}
+.cara-pembayaran {
+  padding-left: 199px;
+  padding-right: 199px;
+  display: flex;
+  margin-top: 24px;
+}
+.cara-pembayaran-left {
+  padding: 20px;
+  margin-right: 50px;
+  width: 60%;
+}
+.cara-pembayaran-right {
+  padding: 20px;
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+}
+.menu-transfer-atm {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.pilihan-atm {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.tombol-nama-atm {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.tombol-pilih-atm {
+  margin: 20px;
+  width: 61px;
+  padding: 6px, 16px, 6px, 16px;
+  font-size: 12px;
+}
+
+/* pembayaran tahap 2 */
+.cara-pembayaran-tahap-2 {
+  padding-left: 199px;
+  padding-right: 199px;
+  display: flex;
+  margin-top: 40px;
+}
+.cara-pembayaran-left-tahap-2 {
+  width: 60%;
+}
+.cara-pembayaran-right-tahap-2 {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+.menu-countdown-24jam {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+  margin-right: 50px;
+  align-items: center;
+}
+.pt24 {
+  padding-top: 14px;
+}
+.timer24 {
+  background-color: #fa2c5a;
+}
+.menu-lakukan-trasnfer {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin-right: 50px;
+  margin-top: 24px;
+}
+.nomor-rekening-copy {
+  display: flex;
+  flex-direction: column;
+}
+.text_field_edit {
+  width: 100%;
+}
+.instruksi-pembayaran {
+  flex-direction: column;
+  padding: 20px;
+  margin-right: 50px;
+  margin-top: 24px;
+  display: flex;
+}
+
+.konfirmasi-pembayaran-pertama {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+}
+.konfirmasi-pembayaran-pertama p {
+  padding-bottom: 52px;
+}
+.konfirmasi-pembayaran-kedua {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+}
+.menu-count-10menit {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.timer10 {
+  background-color: #fa2c5a;
+}
+.p1 {
+  padding-top: 15px;
+}
+.p2 {
+  padding-top: 24px;
+}
+.p3 {
+  padding-top: 8px;
+}
+.upload-gambar {
+  display: flex;
+  flex-direction: column;
+}
+.upload-gambar-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 16px;
+}
+.gambar-awal-upload {
+  width: 296px;
+  height: 162px;
+}

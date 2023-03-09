@@ -49,6 +49,10 @@ const Car = ({ id, name, price, image }) => {
             <button
               className="btn btn-green w-100 text-white fw-bold"
               role="button"
+            ></button>
+            <button
+              className="btn btn-green w-100 text-white fw-bold"
+              role="button"
             >
               Pilih Mobil
             </button>
@@ -58,4 +62,5 @@ const Car = ({ id, name, price, image }) => {
     </div>
   );
 };
+
 export default Car;
