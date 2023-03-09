@@ -4,17 +4,22 @@ import Picker from "./DatePicker/Picker";
 import { Header, Search } from "../../components";
 import { useState } from "react";
 import usePayment from "../../store/Pembayaran";
+import useCar from "../../store/Data";
 
 const CarDetail = ({ cars, setCars, isFiltered }) => {
   const { carId } = useParams();
 
   const car = cars.find((car) => car.id.toString() === carId);
   const { name, price, category, image } = car;
+  const setCurrentCar = useCar((state) => state.setCurrentCar);
+  setCurrentCar({car:car});
+  const currentCar = useCar((state) => state.currentCar);
+  console.log(currentCar);
 
   const [start, setStart] = useState();
   const [end, setEnd] = useState();
   const setCarRent = usePayment((state) => state.setCarRent);
-
+  
   const handleChangeStart = (newValue) => {
     console.log(new Date(newValue));
     setStart(new Date(newValue));
