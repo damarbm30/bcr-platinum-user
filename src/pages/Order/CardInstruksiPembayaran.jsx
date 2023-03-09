@@ -4,6 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import "./Order.css";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -47,8 +48,8 @@ export default function CardInstruksiPembayaran({ metodePembayaranfunction }) {
   };
 
   return (
-    <div className="card">
-      <div className="instruksi-pembayaran-left">
+    <div>
+      <div>
         <p>
           <strong>Intruksi Pembayaran</strong>
         </p>
@@ -59,6 +60,7 @@ export default function CardInstruksiPembayaran({ metodePembayaranfunction }) {
             value={value}
             onChange={handleChange}
             aria-label="basic tabs example"
+            centered
           >
             <Tab label={"ATM " + metodePembayaran} {...a11yProps(0)} />
             <Tab label={"M-" + metodePembayaran} {...a11yProps(1)} />

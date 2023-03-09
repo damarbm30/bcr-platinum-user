@@ -1,38 +1,45 @@
 import React, { useState } from "react";
 import { register, kutak } from "../../assets";
 import Validation from "./Validation";
+import axios from "axios";
 import { isEmpty, get } from "lodash";
-import { useNavigate } from "react-router-dom";
-import "./SignUp.css";
+import "./Login.css";
+import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
-const SignUp = () => {
-  const navigate = useNavigate();
-
-  async function daftar() {
-    console.log(values);
-    await fetch(
-      "https://bootcamp-rent-cars.herokuapp.com/customer/auth/register",
-      {
-        method: "POST",
-        body: JSON.stringify(values),
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        navigate("/");
+const Login = () => {
+  async function masuk(values) {
+    axios
+      .post(
+        "https://bootcamp-rent-cars.herokuapp.com/customer/auth/login",
+        values
+      )
+      .then((res) => {
+        console.log(res);
+        console.log("masuk res", res);
+        localStorage.setItem("token", res.data.access_token);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Selamat Datang",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .catch((err) => {
+        console.log(err.message);
+        console.log("masuk catch");
+        // alert('Email atau Password salah')
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Email atau password salah",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       });
-    result = await result.json();
-
-    console.warn("result", result);
   }
-
   const [values, setValues] = useState({
-    name: "",
     email: "",
     password: "",
   });
@@ -43,14 +50,13 @@ const SignUp = () => {
     console.log(values);
   };
 
-  function handleValidation(e) {
+  function handleLogin(e) {
     e.preventDefault();
     console.log("masuk");
     const error = Validation(values);
     console.log(error);
     if (isEmpty(error)) {
-      daftar();
-      alert("Sign Up Berhasil...!");
+      masuk(values);
     } else {
       setErrors(error);
     }
@@ -60,27 +66,15 @@ const SignUp = () => {
     <div className="fpage">
       <div className="halfform">
         <div className="jdl">
-          <img src={kutak} alt="register" />
-          <h1>Sign Up</h1>
+          <img src={kutak} alt="SignIn" />
+          <h1>Welcome Back!</h1>
         </div>
-        <form className="signup" onSubmit={handleValidation}>
-          <div className="inputform">
-            <label htmlFor="name">Name*</label>
-            <input
-              className="form-control"
-              placeholder="Nama Lengkap"
-              name="name"
-              onChange={handleInput}
-            />
-            {get(errors, "name") && (
-              <p style={{ color: "red" }}>{get(errors, "name")}</p>
-            )}
-          </div>
+        <form className="login" onSubmit={handleLogin}>
           <div className="inputform">
             <label htmlFor="email">Email*</label>
             <input
               className="form-control"
-              placeholder="Contoh: johndee@gmail.com"
+              placeholder="eg: johndee@gmail.com"
               name="email"
               onChange={handleInput}
             />
@@ -89,11 +83,10 @@ const SignUp = () => {
             )}
           </div>
           <div className="inputform">
-            <label htmlFor="password">Create Password*</label>
+            <label htmlFor="password">Password*</label>
             <input
-              type="password"
               className="form-control"
-              placeholder="Wajib 6+ karakter dengan gabungan huruf kapital dan angka"
+              placeholder="Masukkan password"
               name="password"
               onChange={handleInput}
             />
@@ -103,15 +96,15 @@ const SignUp = () => {
           </div>
           <div className="inputform">
             <button role="button" type="submit" className="tombol-signup">
-              SignUp
+              Sign In
             </button>
           </div>
         </form>
-        <div className="kelogin">
+        <div className="kedaftar">
           <p>
-            Already have an account?
-            <Link to="/login" className="text-blue">
-              Sign in here
+            Don't have an account?
+            <Link to="/sign-up" className="text-blue">
+              Sign Up Here!
             </Link>
           </p>
         </div>
@@ -123,4 +116,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Login;

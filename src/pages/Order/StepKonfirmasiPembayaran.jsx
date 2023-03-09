@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Timer10 from "./Timer10";
 import ImageUploadKonfirmasi from "./ImageUploadKonfirmasi";
+import Button from "@mui/material/Button";
+import "./Order.css";
 
-const KonfirmasiPembayaran = ({ handleNextbutton }) => {
+const CardKonfirmasiPembayaran = ({ handleNextbutton }) => {
   const handleNext = handleNextbutton;
 
   const [activeStepKonfirmasi, setActiveStepKonfirmasi] = useState(0);
@@ -22,44 +24,42 @@ const KonfirmasiPembayaran = ({ handleNextbutton }) => {
       case 0:
         return (
           <>
-            <div className="card konfirmasi-pembayaran">
+            <div className="card konfirmasi-pembayaran-pertama">
               <p>
                 Klik konfirmasi pembayaran untuk mempercepat proses pengecekan
               </p>
-              <button
+              <Button
                 role="button"
                 type="submit"
                 className="tombol-bayar"
+                variant="contained"
+                color="success"
                 onClick={handleNextKonfirmasi}
               >
                 Konfirmasi Pembayaran
-              </button>
+              </Button>
             </div>
           </>
         );
       case 1:
         return (
-          <>
+          <div className="card konfirmasi-pembayaran-kedua">
             <div className="menu-count-10menit">
-              <div className="menu-count-10menit-left">
-                <p>
-                  <strong>Konfirmasi Pembayaran</strong>
-                </p>
-              </div>
-              <div className="menu-count-10menit-right">
-                <p>
-                  <Timer10 duration={10 * 60 * 1000} />
-                </p>
+              <p>
+                <strong>Konfirmasi Pembayaran</strong>
+              </p>
+              <div className="timer10">
+                <Timer10 duration={10 * 60 * 1000} />
               </div>
             </div>
             <div className="keterangan-upload">
-              <p>
+              <p className="p1">
                 Terima kasih telah melakukan konfirmasi pembayaran. Pembayaranmu
                 akan segera kami cek tunggu kurang lebih 10 menit untuk
                 mendapatkan konfirmasi.
               </p>
-              <p>Upload Bukti Pembayaran</p>
-              <p>
+              <p className="p2">Upload Bukti Pembayaran</p>
+              <p className="p3">
                 Untuk membantu kami lebih cepat melakukan pengecekan. Kamu bisa
                 upload bukti bayarmu
               </p>
@@ -67,7 +67,7 @@ const KonfirmasiPembayaran = ({ handleNextbutton }) => {
             <div className="upload-gambar">
               <ImageUploadKonfirmasi handleNextNext={handleNext} />
             </div>
-          </>
+          </div>
         );
       default:
         return "unknown step";
@@ -81,4 +81,4 @@ const KonfirmasiPembayaran = ({ handleNextbutton }) => {
   );
 };
 
-export default KonfirmasiPembayaran;
+export default CardKonfirmasiPembayaran;

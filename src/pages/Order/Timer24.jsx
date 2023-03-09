@@ -4,10 +4,15 @@ const Timer24 = ({ duration }) => {
   const [time, setTime] = useState(duration);
 
   useEffect(() => {
-    setTimeout(() => {
-      setTime(time - 1000);
-    }, 1000);
+    if (time < 1) {
+      clearInterval();
+    } else {
+      setTimeout(() => {
+        setTime(time - 1000);
+      }, 1000);
+    }
   }, [time]);
+
   const getFormattedTime = (milliseconds) => {
     let total_seconds = parseInt(Math.floor(milliseconds / 1000));
     let total_minutes = parseInt(Math.floor(total_seconds / 60));

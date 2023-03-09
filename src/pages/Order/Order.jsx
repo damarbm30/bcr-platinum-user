@@ -5,7 +5,7 @@ import {
   panah_keatas_total,
   green_checklist,
 } from "../../assets";
-import "./PembayaranAwal.css";
+import "./Order.css";
 import { isEmpty } from "lodash";
 import moment from "moment/moment";
 import Stepper from "@mui/material/Stepper";
@@ -15,14 +15,14 @@ import Button from "@mui/material/Button";
 import { Typography } from "@mui/material";
 import StepKonfirmasiPembayaran from "./StepKonfirmasiPembayaran";
 import StepPilihMetodeBayar from "./StepPilihMetodeBayar";
+import { v4 as uuidv4 } from "uuid";
 
-// pageorder
-
+const uniqueId = uuidv4();
 const BCA_TRANSFER = "BCA";
 const BNI_TRANSFER = "BNI";
 const MANDIRI_TRANSFER = "MANDIRI";
 
-const PembayaranAwal = () => {
+const Order = () => {
   const [metodePembayaran, setMetodePembayaran] = useState(null);
   const [awalSewa, setAwalSewa] = useState(null);
   const [akhirSewa, setAkhirSewa] = useState(null);
@@ -40,15 +40,6 @@ const PembayaranAwal = () => {
     setActiveStep(activeStep - 1);
   };
 
-  const onChangePaymentMethod = (value) => {
-    console.log(value);
-  };
-
-  const [showtab, setShowtab] = useState(1);
-
-  const handletab = (e) => {
-    setShowtab(e);
-  };
   useEffect(() => {
     setAwalSewa(new Date());
   }, []);
@@ -64,9 +55,11 @@ const PembayaranAwal = () => {
     switch (step) {
       case 0:
         return (
-          <Typography>
-            <strong>Pembayaran</strong>
-          </Typography>
+          <>
+            <Typography>
+              <strong>Pembayaran</strong>
+            </Typography>
+          </>
         );
 
       case 1:
@@ -75,7 +68,7 @@ const PembayaranAwal = () => {
             <p>
               <strong>{metodePembayaran} Transfer</strong>
               <br></br>
-              Order ID: 86754231
+              Order ID: {uniqueId}
             </p>
           </Typography>
         );
@@ -98,7 +91,7 @@ const PembayaranAwal = () => {
       case 0:
         return (
           <>
-            <div className="dis-search">
+            <div className="detail-pesananmu-bayar">
               <div className="card detail-order-car">
                 <div className="judul-detail-pesanan">
                   <p>
@@ -253,7 +246,7 @@ const PembayaranAwal = () => {
                   className="tombol-bayar"
                   disabled={isEmpty(metodePembayaran)}
                   variant="contained"
-                  color="primary"
+                  color="success"
                   onClick={handleNext}
                 >
                   Bayar
@@ -266,10 +259,14 @@ const PembayaranAwal = () => {
         return (
           <>
             <div className="cara-pembayaran-tahap-2">
-              <StepPilihMetodeBayar
-                metodePembayaranfunction={metodePembayaran}
-              />
-              <StepKonfirmasiPembayaran handleNextbutton={handleNext} />
+              <div className="cara-pembayaran-left-tahap-2">
+                <StepPilihMetodeBayar
+                  metodePembayaranfunction={metodePembayaran}
+                />
+              </div>
+              <div className="cara-pembayaran-right-tahap-2">
+                <StepKonfirmasiPembayaran handleNextbutton={handleNext} />
+              </div>
             </div>
           </>
         );
@@ -312,4 +309,4 @@ const PembayaranAwal = () => {
   );
 };
 
-export default PembayaranAwal;
+export default Order;

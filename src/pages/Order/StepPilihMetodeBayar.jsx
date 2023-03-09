@@ -6,25 +6,23 @@ import Timer24 from "./Timer24";
 import CopyToClipboard from "react-copy-to-clipboard";
 import InputAdornment from "@mui/material/InputAdornment";
 import CardInstruksiPembayaran from "./CardInstruksiPembayaran";
+import "./Order.css";
 
 const StepPilihMetodeBayar = ({ metodePembayaranfunction }) => {
   let metodePembayaran = metodePembayaranfunction;
 
   return (
-    <div className="cara-pembayaran-tahap-2">
+    <div>
       <div className=".cara-pembayaran-left-tahap-2">
         <div className="card menu-countdown-24jam">
           <div className="selesaikan-pembayaran-count-left">
             <p>
               <strong>Selesaikan Pembayaran Sebelum</strong>
-              <br></br>
-              <p>Rabu, 19 Mei 2022 jam 13.00 WIB</p>
             </p>
+            <p className="pt24">Rabu, 19 Mei 2022 jam 13.00 WIB</p>
           </div>
-          <div className="selesaikan-pembayaran-count-right">
-            <p>
-              <Timer24 duration={1 * 24 * 60 * 60 * 1000} />
-            </p>
+          <div className="timer24">
+            <Timer24 duration={1 * 24 * 60 * 60 * 1000} />
           </div>
         </div>
         <div className="card menu-lakukan-trasnfer">
@@ -87,7 +85,11 @@ const StepPilihMetodeBayar = ({ metodePembayaranfunction }) => {
             </div>
           </div>
         </div>
-        <CardInstruksiPembayaran metodePembayaranfunction={metodePembayaran} />
+        <div className="card instruksi-pembayaran">
+          <CardInstruksiPembayaran
+            metodePembayaranfunction={metodePembayaran}
+          />
+        </div>
       </div>
     </div>
   );
