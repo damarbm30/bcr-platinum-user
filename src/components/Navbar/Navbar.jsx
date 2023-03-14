@@ -5,8 +5,10 @@ import { TOKEN } from "../../action/Auth";
 import { logo } from "../../assets";
 import "./Navbar.css";
 import { useNavigate } from "react-router-dom";
+import useProfile from "../../store/userProfile";
 
 const Navbar = () => {
+  const { email, setProfile } = useProfile((state) => state);
   const navigate = useNavigate();
   const logOut = () => {
     doLogout();
@@ -57,14 +59,15 @@ const Navbar = () => {
                 FAQ
               </HashLink>
             </li>
-
             {localStorage.getItem(TOKEN) ? (
-              <li
-                className="nav-link btn btn-danger text-white"
-                onClick={logOut}
-              >
-                Log Out
-              </li>
+              <div>
+                <li
+                  className="nav-link btn btn-success text-white"
+                  onClick={logOut}
+                >
+                  {email}
+                </li>
+              </div>
             ) : (
               <li className="nav-item">
                 <Link

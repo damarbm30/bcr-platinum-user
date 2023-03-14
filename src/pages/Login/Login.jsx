@@ -9,9 +9,12 @@ import { isEmpty, get } from "lodash";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "./Login.css";
+import useProfile from "../../store/userProfile";
 
 const Login = () => {
   const navigate = useNavigate();
+  const { email, setProfile } = useProfile((state) => state);
+  console.log(email);
   async function masuk(values) {
     axios
       .post(
@@ -21,6 +24,7 @@ const Login = () => {
       .then((res) => {
         console.log(res);
         console.log("masuk res", res);
+        setProfile({ email: res.data.email });
         localStorage.setItem(TOKEN, res.data.access_token);
         Swal.fire({
           position: "center",
@@ -115,7 +119,7 @@ const Login = () => {
         <div className="kedaftar">
           <p>
             Don't have an account?
-            <HashLink to="" className="text-blue">
+            <HashLink to="/sign-up" className="text-blue">
               Sign Up Here!
             </HashLink>
           </p>

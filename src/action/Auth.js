@@ -1,5 +1,5 @@
 export const doLogin = () => {
-  localStorage.setItem(TOKEN, "asdadsa");
+  localStorage.setItem(TOKEN, "userInfo");
 };
 
 export const doLogout = () => {

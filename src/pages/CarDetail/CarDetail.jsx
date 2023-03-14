@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { users } from "../../assets";
 import Picker from "./DatePicker/Picker";
-import { Header, Search } from "../../components";
+import { Header, Search, Navbar } from "../../components";
 import { useState } from "react";
 import usePayment from "../../store/Pembayaran";
 
@@ -27,7 +27,7 @@ const CarDetail = ({ cars, setCars, isFiltered }) => {
   };
 
   const handleSubmit = () => {
-    setCarRent({start:start, last:end})
+    setCarRent({ start: start, last: end });
     console.log(start.$y, start.$M, start.$D);
     console.log(end.$y, end.$M, end.$D);
   };
@@ -55,33 +55,57 @@ const CarDetail = ({ cars, setCars, isFiltered }) => {
 
   return (
     <>
+      <Navbar />
       <Header isFiltered={isFiltered} />
       <Search setCars={setCars} isDetail />
       <main>
         <div className="container d-flex justify-content-center">
-          <div className="row justify-content-center g-3" style={{ width: "93.33%" }}>
+          <div
+            className="row justify-content-center g-3"
+            style={{ width: "93.33%" }}
+          >
             <div className="col-md-4 order-md-2">
               <div className="card shadow-sm">
                 <div className="card-body">
-                  <img src={image} alt={name} className="img-fluid mb-1 rounded" />
+                  <img
+                    src={image}
+                    alt={name}
+                    className="img-fluid mb-1 rounded"
+                  />
                   <div>
                     <p className="fw-bold mb-1">{name}</p>
-                    <div className="d-flex gap-1" style={{ marginBottom: "3.4375rem" }}>
+                    <div
+                      className="d-flex gap-1"
+                      style={{ marginBottom: "3.4375rem" }}
+                    >
                       <img src={users} alt="users" />
-                      <p className="fw-bold text-secondary" style={{ fontSize: "0.625rem" }}>
+                      <p
+                        className="fw-bold text-secondary"
+                        style={{ fontSize: "0.625rem" }}
+                      >
                         {peopleCap}
                       </p>
                     </div>
                   </div>
                   <div className="div">
-                    <Picker start={start} end={end} onChangeStart={handleChangeStart} onChangeEnd={handleChangeEnd} />
+                    <Picker
+                      start={start}
+                      end={end}
+                      onChangeStart={handleChangeStart}
+                      onChangeEnd={handleChangeEnd}
+                    />
                   </div>
                   <div className="d-flex justify-content-between fw-bold">
                     <p>Total</p>
                     <span>{formattedPrice}</span>
                   </div>
                   <div className="d-grid gap-2">
-                    <button className="btn btn-success" type="button" disabled={!start || !end} onClick={() => handleSubmit()}>
+                    <button
+                      className="btn btn-success"
+                      type="button"
+                      disabled={!start || !end}
+                      onClick={() => handleSubmit()}
+                    >
                       Lanjutkan Pembayaran
                     </button>
                   </div>
@@ -93,28 +117,51 @@ const CarDetail = ({ cars, setCars, isFiltered }) => {
                 <div className="card-body">
                   <p className="fw-bold mb-3">Tentang Paket</p>
                   <p className="fw-bold mb-3">Include</p>
-                  <ul className="text-secondary fw-bold" style={{ fontSize: "0.875rem" }}>
-                    <li>Apa saja yang termasuk dalam paket misal durasi max 12 jam</li>
+                  <ul
+                    className="text-secondary fw-bold"
+                    style={{ fontSize: "0.875rem" }}
+                  >
+                    <li>
+                      Apa saja yang termasuk dalam paket misal durasi max 12 jam
+                    </li>
                     <li>Sudah termasuk bensin selama 12 jam</li>
                     <li>Sudah termasuk Tiket Wisata</li>
                     <li>Sudah termasuk pajak</li>
                   </ul>
                   <p className="fw-bold mb-3">Exclude</p>
-                  <ul className="text-secondary fw-bold" style={{ fontSize: "0.875rem" }}>
+                  <ul
+                    className="text-secondary fw-bold"
+                    style={{ fontSize: "0.875rem" }}
+                  >
                     <li>Tidak termasuk biaya makan sopir Rp 75.000/hari</li>
-                    <li>Jika overtime lebih dari 12 jam akan ada tambahan biaya Rp 20.000/jam</li>
+                    <li>
+                      Jika overtime lebih dari 12 jam akan ada tambahan biaya Rp
+                      20.000/jam
+                    </li>
                     <li>Tidak termasuk akomodasi penginapan</li>
                   </ul>
                   <p className="fw-bold mb-3">Refund, Reschedule, Overtime</p>
-                  <ul className="text-secondary fw-bold" style={{ fontSize: "0.875rem" }}>
+                  <ul
+                    className="text-secondary fw-bold"
+                    style={{ fontSize: "0.875rem" }}
+                  >
                     <li>Tidak termasuk biaya makan sopir Rp 75.000/hari</li>
-                    <li>Jika overtime lebih dari 12 jam akan ada tambahan biaya Rp 20.000/jam</li>
+                    <li>
+                      Jika overtime lebih dari 12 jam akan ada tambahan biaya Rp
+                      20.000/jam
+                    </li>
                     <li>Tidak termasuk akomodasi penginapan</li>
                     <li>Tidak termasuk biaya makan sopir Rp 75.000/hari</li>
-                    <li>Jika overtime lebih dari 12 jam akan ada tambahan biaya Rp 20.000/jam</li>
+                    <li>
+                      Jika overtime lebih dari 12 jam akan ada tambahan biaya Rp
+                      20.000/jam
+                    </li>
                     <li>Tidak termasuk akomodasi penginapan</li>
                     <li>Tidak termasuk biaya makan sopir Rp 75.000/hari</li>
-                    <li>Jika overtime lebih dari 12 jam akan ada tambahan biaya Rp 20.000/jam</li>
+                    <li>
+                      Jika overtime lebih dari 12 jam akan ada tambahan biaya Rp
+                      20.000/jam
+                    </li>
                     <li>Tidak termasuk akomodasi penginapan</li>
                   </ul>
                 </div>
