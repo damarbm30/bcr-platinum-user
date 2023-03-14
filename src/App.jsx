@@ -1,12 +1,12 @@
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-import { Footer, Navbar } from "./components";
-import { CarDetail, Cars, Home, Login } from "./pages";
+import { Footer } from "./components";
+import { CarDetail, Cars, Home, Login, SignUp } from "./pages";
 import { userLogin } from "./services/auth";
+import Protected from "./components/Protected/Protected";
 
 function App() {
   const [cars, setCars] = useState([]);
@@ -18,19 +18,23 @@ function App() {
 
   return (
     <>
-      <Navbar />
       <Routes>
         <Route index path="/" element={<Home />} />
-        <Route index path="/login" element={<Login />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/sign-up" element={<SignUp />} />
         <Route
-          index
+          exact
           path="/cars"
           element={
-            <Cars
-              cars={cars}
-              setCars={setCars}
-              isFiltered={isFiltered}
-              setIsFiltered={setIsFiltered}
+            <Protected
+              component={
+                <Cars
+                  cars={cars}
+                  setCars={setCars}
+                  isFiltered={isFiltered}
+                  setIsFiltered={setIsFiltered}
+                />
+              }
             />
           }
         />
@@ -38,7 +42,15 @@ function App() {
           index
           path="/car/:carId"
           element={
-            <CarDetail cars={cars} setCars={setCars} isFiltered={isFiltered} />
+            <Protected
+              component={
+                <CarDetail
+                  cars={cars}
+                  setCars={setCars}
+                  isFiltered={isFiltered}
+                />
+              }
+            />
           }
         />
       </Routes>

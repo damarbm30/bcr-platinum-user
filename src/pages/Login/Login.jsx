@@ -1,40 +1,48 @@
 import React, { useState } from "react";
 import { register, kutak } from "../../assets";
 import { HashLink } from "react-router-hash-link";
+import { TOKEN } from "../../action/Auth";
 import Validation from "./Validation";
 import axios from "axios";
-import {isEmpty, get } from "lodash";
-import Swal from 'sweetalert2';
+import { doLogin } from "../../action/Auth";
+import { isEmpty, get } from "lodash";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import "./Login.css";
 
 const Login = () => {
+  const navigate = useNavigate();
   async function masuk(values) {
     axios
-    .post("https://bootcamp-rent-cars.herokuapp.com/customer/auth/login" , values)
-    .then((res) => {
+      .post(
+        "https://bootcamp-rent-cars.herokuapp.com/customer/auth/login",
+        values
+      )
+      .then((res) => {
         console.log(res);
-        console.log('masuk res', res)
-        localStorage.setItem('token', res.data.access_token)
+        console.log("masuk res", res);
+        localStorage.setItem(TOKEN, res.data.access_token);
         Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Selamat Datang',
+          position: "center",
+          icon: "success",
+          title: "Selamat Datang",
           showConfirmButton: false,
-          timer: 1500
+          timer: 1500,
         });
-    })
-    .catch((err) => {
-        console.log(err.message)
-        console.log('masuk catch')
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err.message);
+        console.log("masuk catch");
         // alert('Email atau Password salah')
         Swal.fire({
-          position: 'center',
-          icon: 'error',
-          title: 'Email atau password salah',
+          position: "center",
+          icon: "error",
+          title: "Email atau password salah",
           showConfirmButton: false,
-          timer: 1500
+          timer: 1500,
+        });
       });
-    })
   }
   const [values, setValues] = useState({
     email: "",
@@ -83,6 +91,8 @@ const Login = () => {
             <label htmlFor="password">Password*</label>
             <input
               className="form-control"
+              type="password"
+              id="myInput"
               placeholder="Masukkan password"
               name="password"
               onChange={handleInput}
@@ -92,7 +102,12 @@ const Login = () => {
             )}
           </div>
           <div className="inputform">
-            <button role="button" type="submit" className="tombol-signup">
+            <button
+              role="button"
+              type="submit"
+              className="tombol-signup"
+              onClick={doLogin}
+            >
               Sign In
             </button>
           </div>

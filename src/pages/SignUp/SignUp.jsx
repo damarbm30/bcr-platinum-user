@@ -101,7 +101,7 @@ const SignUp = () => {
         <div className="kelogin">
           <p>
             Already have an account?
-            <HashLink to="" className="text-blue">
+            <HashLink to="/login" className="text-blue">
               Sign in here
             </HashLink>
           </p>

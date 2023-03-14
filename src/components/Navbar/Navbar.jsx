@@ -1,17 +1,27 @@
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
-
+import { doLogout } from "../../action/Auth";
+import { TOKEN } from "../../action/Auth";
 import { logo } from "../../assets";
 import "./Navbar.css";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const logOut = () => {
+    doLogout();
+    navigate("/login");
+  };
   return (
     <nav className="navbar navbar-expand-lg sticky-top py-3 shadow-md-sm">
       <div className="container-fluid justify-content-start-md">
         <Link to="/" className="navbar-brand d-none d-sm-block offset-md-1">
           <img src={logo} alt="logo" />
         </Link>
-        <Link to="/" className="navbar-brand offset-md-1 fw-bold d-block d-sm-none">
+        <Link
+          to="/"
+          className="navbar-brand offset-md-1 fw-bold d-block d-sm-none"
+        >
           BCR
         </Link>
         <button
@@ -47,6 +57,24 @@ const Navbar = () => {
                 FAQ
               </HashLink>
             </li>
+
+            {localStorage.getItem(TOKEN) ? (
+              <li
+                className="nav-link btn btn-danger text-white"
+                onClick={logOut}
+              >
+                Log Out
+              </li>
+            ) : (
+              <li className="nav-item">
+                <Link
+                  className="nav-link btn btn-success text-white"
+                  to="/sign-up"
+                >
+                  Register
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>
@@ -54,4 +82,3 @@ const Navbar = () => {
   );
 };
 export default Navbar;
-
