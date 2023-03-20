@@ -55,7 +55,6 @@ const CarDetail = ({ cars, setCars, isFiltered }) => {
 
   return (
     <>
-      <Navbar />
       <Header isFiltered={isFiltered} />
       <Search setCars={setCars} isDetail />
       <main>

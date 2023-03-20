@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { register, kutak } from "../../assets";
 import { HashLink } from "react-router-hash-link";
-import { TOKEN } from "../../action/Auth";
 import Validation from "./Validation";
 import axios from "axios";
-import { doLogin } from "../../action/Auth";
 import { isEmpty, get } from "lodash";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -25,7 +23,7 @@ const Login = () => {
         console.log(res);
         console.log("masuk res", res);
         setProfile({ email: res.data.email });
-        localStorage.setItem(TOKEN, res.data.access_token);
+        localStorage.setItem("userInfo", res.data.access_token);
         Swal.fire({
           position: "center",
           icon: "success",
@@ -106,12 +104,7 @@ const Login = () => {
             )}
           </div>
           <div className="inputform">
-            <button
-              role="button"
-              type="submit"
-              className="tombol-signup"
-              onClick={doLogin}
-            >
+            <button role="button" type="submit" className="tombol-signup">
               Sign In
             </button>
           </div>

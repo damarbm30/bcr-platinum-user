@@ -84,6 +84,7 @@ const SignUp = () => {
             <label htmlFor="password">Create Password*</label>
             <input
               className="form-control"
+              type="password"
               placeholder="Wajib 6+ karakter dengan gabungan huruf kapital dan angka"
               name="password"
               onChange={handleInput}
