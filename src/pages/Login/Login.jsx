@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { register, kutak } from "../../assets";
-import { HashLink } from "react-router-hash-link";
 import Validation from "./Validation";
 import axios from "axios";
 import { isEmpty, get } from "lodash";
@@ -112,9 +111,9 @@ const Login = () => {
         <div className="kedaftar">
           <p>
             Don't have an account?
-            <HashLink to="/sign-up" className="text-blue">
+            <Link to="/sign-up" className="text-blue">
               Sign Up Here!
-            </HashLink>
+            </Link>
           </p>
         </div>
       </div>

@@ -51,4 +51,5 @@ const Car = ({ id, name, price, image }) => {
     </div>
   );
 };
+
 export default Car;

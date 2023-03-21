@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { register, kutak } from "../../assets";
-import { HashLink } from "react-router-hash-link";
 import Validation from "./Validation";
 import { isEmpty, get } from "lodash";
+import { useNavigate } from "react-router-dom";
 import "./SignUp.css";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+
   async function daftar() {
     console.log(values);
-    let result = await fetch(
+    await fetch(
       "https://bootcamp-rent-cars.herokuapp.com/customer/auth/register",
       {
         method: "POST",
@@ -18,8 +21,13 @@ const SignUp = () => {
           Accept: "application/json",
         },
       }
-    );
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        navigate("/");
+      });
     result = await result.json();
+
     console.warn("result", result);
   }
 
@@ -83,8 +91,8 @@ const SignUp = () => {
           <div className="inputform">
             <label htmlFor="password">Create Password*</label>
             <input
-              className="form-control"
               type="password"
+              className="form-control"
               placeholder="Wajib 6+ karakter dengan gabungan huruf kapital dan angka"
               name="password"
               onChange={handleInput}
@@ -102,9 +110,9 @@ const SignUp = () => {
         <div className="kelogin">
           <p>
             Already have an account?
-            <HashLink to="/login" className="text-blue">
+            <Link to="/login" className="text-blue">
               Sign in here
-            </HashLink>
+            </Link>
           </p>
         </div>
       </div>
