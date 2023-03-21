@@ -18,13 +18,6 @@ const Car = ({ id, name, price, image }) => {
       <div className="card">
         <div className="card-body d-flex flex-column gap-1">
           <div className="d-flex flex-column align-items-lg-center justify-content-center">
-            <img
-              src={image}
-              alt={name}
-              height={160}
-              className="rounded"
-              style={{ width: "90%", objectFit: "fill" }}
-            />
             {isLoading && <Skeleton className="skeleton" duration={0.5} />}
             <img
               src={image}
@@ -46,10 +39,6 @@ const Car = ({ id, name, price, image }) => {
             tempor incididunt ut labore et dolore magna aliqua.
           </p>
           <Link to={`/car/${id}`} className="mt-3">
-            <button
-              className="btn btn-green w-100 text-white fw-bold"
-              role="button"
-            ></button>
             <button
               className="btn btn-green w-100 text-white fw-bold"
               role="button"
