@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-import { Footer, Navbar } from "./components";
+import { Footer } from "./components";
 import { CarDetail, Cars, Home, Login, SignUp, Order } from "./pages";
-import { userLogin } from "./services/auth";
+import { ProtectedRoutes, PublicRoutes } from "./routes";
 
 function App() {
   const [cars, setCars] = useState([]);
@@ -20,7 +20,7 @@ function App() {
           <Route path="/sign-up" element={<SignUp />} />
         </Route>
         <Route element={<ProtectedRoutes />}>
-        <Route index path="/order" element={<Order />} />
+          <Route index path="/order" element={<Order />} />
           <Route
             exact
             path="/cars"
