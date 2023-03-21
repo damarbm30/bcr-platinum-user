@@ -3,11 +3,15 @@ import { register, kutak } from "../../assets";
 import Validation from "./Validation";
 import axios from "axios";
 import { isEmpty, get } from "lodash";
-import "./Login.css";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
+import "./Login.css";
+import useProfile from "../../store/userProfile";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const { email, setProfile } = useProfile((state) => state);
+  console.log(email);
   async function masuk(values) {
     axios
       .post(
@@ -17,7 +21,8 @@ const Login = () => {
       .then((res) => {
         console.log(res);
         console.log("masuk res", res);
-        localStorage.setItem("token", res.data.access_token);
+        setProfile({ email: res.data.email });
+        localStorage.setItem("userInfo", res.data.access_token);
         Swal.fire({
           position: "center",
           icon: "success",
@@ -25,6 +30,7 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        navigate("/");
       })
       .catch((err) => {
         console.log(err.message);
@@ -86,6 +92,8 @@ const Login = () => {
             <label htmlFor="password">Password*</label>
             <input
               className="form-control"
+              type="password"
+              id="myInput"
               placeholder="Masukkan password"
               name="password"
               onChange={handleInput}
