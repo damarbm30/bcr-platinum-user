@@ -19,6 +19,9 @@ import panah_keatas_total from "./panah_keatas_total.svg";
 import green_checklist from "./green_checklist.svg";
 import upload_gambar from "./upload_gambar.svg";
 import icon_copy from "./icon_copy.svg";
+import success from "./success.svg";
+import download from "./fi_download.svg";
+import pdf_viewer from "./pdf_viewer.svg";
 
 export {
   time,
@@ -42,4 +45,7 @@ export {
   green_checklist,
   upload_gambar,
   icon_copy,
+  success,
+  download,
+  pdf_viewer,
 };

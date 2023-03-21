@@ -12,10 +12,12 @@ import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
-import { Typography } from "@mui/material";
+import Tiket from "./Tiket";
 import StepKonfirmasiPembayaran from "./StepKonfirmasiPembayaran";
 import StepPilihMetodeBayar from "./StepPilihMetodeBayar";
 import { v4 as uuidv4 } from "uuid";
+import useCar from "../../store/Data";
+import usePayment from "../../store/Pembayaran";
 
 const uniqueId = uuidv4();
 const BCA_TRANSFER = "BCA";
@@ -23,9 +25,73 @@ const BNI_TRANSFER = "BNI";
 const MANDIRI_TRANSFER = "MANDIRI";
 
 const Order = () => {
+  const currentCar = useCar((state) => state.currentCar);
+  const PaymentAwal = usePayment((state) => state.startRent);
+  const PaymentAkhir = usePayment((state) => state.lastRent);
+
+  // const category = JSON.stringify(currentCar.category);
+  let peopleCap;
+  // console.log(peopleCap);
+
+  switch (currentCar.category.toLowerCase()) {
+    case "small":
+      peopleCap = "2 - 4 orang";
+      break;
+    case "Medium":
+      peopleCap = "4-6 orang";
+      break;
+    case "large":
+      peopleCap = "6-8 orang";
+      break;
+  }
+
   const [metodePembayaran, setMetodePembayaran] = useState(null);
-  const [awalSewa, setAwalSewa] = useState(null);
-  const [akhirSewa, setAkhirSewa] = useState(null);
+  // console.log("metode pembayaran", metodePembayaran);
+  const [awalSewa, setAwalSewa] = useState(null); //data from zustand
+  const [akhirSewa, setAkhirSewa] = useState(null); //data from zustand
+  const [postCarDate, setPostCarDate] = useState([]); //data from post API
+  let jumlahHari = moment(akhirSewa).diff(moment(awalSewa), "days"); //data from zustand
+  const orderIdPut = JSON.stringify(postCarDate.id);
+
+  const awSew =
+    new Date(PaymentAwal) && moment(new Date(PaymentAwal)).format("YYYY-MM-D");
+  const akSew =
+    new Date(PaymentAkhir) &&
+    moment(new Date(PaymentAkhir)).format("YYYY-MM-D");
+  const data = {
+    start_rent_at: awSew,
+    finish_rent_at: akSew,
+    car_id: JSON.stringify(currentCar.id),
+  };
+  async function postDate() {
+    console.log(data);
+    await fetch("https://bootcamp-rent-cars.herokuapp.com/customer/order", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        Accept: "application/json",
+        access_token:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJjci5pbyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTY2NTI0MjUwOX0.ZTx8L1MqJ4Az8KzoeYU2S614EQPnqk6Owv03PUSnkzc",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setPostCarDate(data);
+      })
+      .catch((error) => console.error(error));
+  }
+
+  const [hargaTotal, setHargaTotal] = useState();
+  const formatter = new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    minimumFractionDigits: 0,
+  });
+  const formattedPrice = formatter.format(postCarDate.total_price);
+  const formattedPriceSatuan = formatter.format(currentCar.price);
+  console.log(hargaTotal);
 
   const [activeStep, setActiveStep] = useState(0);
   const [skippedSteps, setSkippedSteps] = useState([]);
@@ -40,12 +106,19 @@ const Order = () => {
     setActiveStep(activeStep - 1);
   };
 
-  useEffect(() => {
-    setAwalSewa(new Date());
-  }, []);
-  console.log(akhirSewa);
+  const [slipData, setSlipData] = useState(null);
+  console.log(slipData);
 
-  console.log("metode pembayaran", metodePembayaran);
+  const handleSaveSlipData = (data) => {
+    setSlipData(data);
+  };
+
+  useEffect(() => {
+    setAwalSewa(new Date(PaymentAwal));
+    setAkhirSewa(new Date(PaymentAkhir));
+    setHargaTotal(formattedPrice);
+    postDate();
+  }, []);
 
   function getSteps() {
     return ["Pilih Metode", "Bayar", "Tiket"];
@@ -56,31 +129,29 @@ const Order = () => {
       case 0:
         return (
           <>
-            <Typography>
+            <p>
               <strong>Pembayaran</strong>
-            </Typography>
+            </p>
           </>
         );
 
       case 1:
         return (
-          <Typography>
+          <>
             <p>
               <strong>{metodePembayaran} Transfer</strong>
-              <br></br>
-              Order ID: {uniqueId}
             </p>
-          </Typography>
+            <p>Order ID: {uniqueId.substring(0, 8)}</p>
+          </>
         );
       case 2:
         return (
-          <Typography>
+          <>
             <p>
               <strong>Tiket</strong>
-              <br></br>
-              Order ID: XXXXXXXX
             </p>
-          </Typography>
+            <p>Order ID: XXXXXXXX</p>
+          </>
         );
       default:
         return "unknown step";
@@ -101,11 +172,11 @@ const Order = () => {
                 <div className="deskripsi-order">
                   <div className="detail-deskripsi">
                     <p>Nama/Tipe Mobil</p>
-                    <p>State Innova</p>
+                    <p>{currentCar.name}</p>
                   </div>
                   <div className="detail-deskripsi">
                     <p>Kategori</p>
-                    <p>State 6 - 8 orang</p>
+                    <img src={users} alt="users" /> {peopleCap}
                   </div>
                   <div className="detail-deskripsi">
                     <p>Tanggal Mulai Sewa</p>
@@ -114,7 +185,7 @@ const Order = () => {
                   <div className="detail-deskripsi">
                     <p>Tanggal Akhir Sewa</p>
                     <p>
-                      {moment(awalSewa).add(40, "days").format("D MMMM YYYY")}
+                      {akhirSewa && moment(akhirSewa).format("D MMMM YYYY")}
                     </p>
                   </div>
                 </div>
@@ -136,7 +207,7 @@ const Order = () => {
                     onClick={() => setMetodePembayaran(BCA_TRANSFER)}
                   >
                     <div className="tombol-nama-atm">
-                      <label for="BCA">
+                      <label htmlFor="BCA">
                         <button
                           role="button"
                           type="submit"
@@ -156,7 +227,7 @@ const Order = () => {
                     onClick={() => setMetodePembayaran(BNI_TRANSFER)}
                   >
                     <div className="tombol-nama-atm">
-                      <label for="BNI">
+                      <label htmlFor="BNI">
                         <button
                           role="button"
                           type="submit"
@@ -176,7 +247,7 @@ const Order = () => {
                     onClick={() => setMetodePembayaran(MANDIRI_TRANSFER)}
                   >
                     <div className="tombol-nama-atm">
-                      <label for="MANDIRI">
+                      <label htmlFor="MANDIRI">
                         <button
                           role="button"
                           type="submit"
@@ -195,51 +266,53 @@ const Order = () => {
               </div>
               <div className="card cara-pembayaran-right">
                 <p>
-                  <strong>Innova</strong>
+                  <strong>{currentCar.name}</strong>
                 </p>
                 <p>
-                  <img src={users} alt="users" />
-                  6-8 orang
+                  <img src={users} alt="users" /> {peopleCap}
                 </p>
-                <div className="pembayaran0102-left">
+                <div className="pembayaran-collaps-atas">
                   <p>
-                    Total
-                    <img src={panah_keatas_total} alt="panah_keatas_total" />
+                    <a
+                      data-bs-toggle="collapse"
+                      href="#collapseExample"
+                      aria-expanded="false"
+                      aria-controls="collapseExample"
+                    >
+                      Total
+                      <img src={panah_keatas_total} alt="panah_keatas_total" />
+                    </a>
+                  </p>
+                  <p> {formattedPrice}</p>
+                </div>
+                <div className="collapse" id="collapseExample">
+                  <p>
+                    <strong>Harga</strong>
+                  </p>
+                  <ul>
+                    <li>
+                      Sewa Mobil {formattedPriceSatuan} x {jumlahHari + 1} Hari
+                    </li>
+                  </ul>
+                  <p>
+                    <strong>Biaya Lainnya</strong>
+                  </p>
+                  <ul>
+                    <li>Pajak</li>
+                    <li>Biaya makan sopir</li>
+                  </ul>
+                  <p>
+                    <strong>Belum Termasuk</strong>
+                  </p>
+                  <ul>
+                    <li>Bensin</li>
+                    <li>Tol dan parkir</li>
+                  </ul>
+                  <p>
+                    <strong>Total</strong>
+                    {formattedPrice}
                   </p>
                 </div>
-                <div className="pembayaran0102-right">
-                  <p>Rp. 3.500.000</p>
-                </div>
-                <p>
-                  <strong>Harga</strong>
-                </p>
-                <ul>
-                  <li>
-                    Sewa Mobil Rp.500.000 x{" "}
-                    {moment(awalSewa).diff(
-                      moment(awalSewa).add(40, "days"),
-                      "months"
-                    )}
-                  </li>
-                </ul>
-                <p>
-                  <strong>Biaya Lainnya</strong>
-                </p>
-                <ul>
-                  <li>Pajak</li>
-                  <li>Biaya makan sopir</li>
-                </ul>
-                <p>
-                  <strong>Belum Termasuk</strong>
-                </p>
-                <ul>
-                  <li>Bensin</li>
-                  <li>Tol dan parkir</li>
-                </ul>
-                <p>
-                  <strong>Total</strong>
-                  Rp. 3.500.000
-                </p>
                 <Button
                   role="button"
                   type="submit"
@@ -262,18 +335,25 @@ const Order = () => {
               <div className="cara-pembayaran-left-tahap-2">
                 <StepPilihMetodeBayar
                   metodePembayaranfunction={metodePembayaran}
+                  hargaTotalBayar={hargaTotal}
                 />
               </div>
               <div className="cara-pembayaran-right-tahap-2">
-                <StepKonfirmasiPembayaran handleNextbutton={handleNext} />
+                <StepKonfirmasiPembayaran
+                  handleNextbutton={handleNext}
+                  orderId={orderIdPut}
+                  saveSlipData={handleSaveSlipData}
+                />
               </div>
             </div>
           </>
         );
-      case 2:
-        <>Tiket</>;
       default:
-        return "unknown step";
+        return (
+          <>
+            <Tiket slipData={slipData} />
+          </>
+        );
     }
   }
 
@@ -285,9 +365,7 @@ const Order = () => {
             <Button disabled={activeStep === 0} onClick={handleBack}>
               <img src={panahsampingpembayaran} alt="panahsampingpembayaran" />
             </Button>
-            <p>
-              <strong>{getStepJudul(activeStep)}</strong>
-            </p>
+            <strong>{getStepJudul(activeStep)}</strong>
           </div>
           <div className="step-pembayaran-right">
             <Stepper activeStep={activeStep}>

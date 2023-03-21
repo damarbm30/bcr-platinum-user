@@ -16,13 +16,30 @@ const Timer10 = ({ duration }) => {
   const getFormattedTime = (milliseconds) => {
     let total_seconds = parseInt(Math.floor(milliseconds / 1000));
     let total_minutes = parseInt(Math.floor(total_seconds / 60));
-    let total_hour = parseInt(Math.floor(total_minutes / 60));
 
     let seconds = parseInt(total_seconds % 60);
     let minutes = parseInt(total_minutes % 60);
-    let hours = parseInt(total_hour % 60);
 
-    return ` ${minutes}: ${seconds}`;
+    const timer10Style = {
+      color: "white",
+      backgroundColor: "#FA2C5A",
+      borderradius: "2px",
+      padding: "0px 2px",
+      gap: "10px",
+      width: "20px",
+      height: "20px",
+    };
+    return (
+      <div>
+        <span key="minutes" style={timer10Style}>
+          {minutes}
+        </span>
+        <span key="dotdot"> : </span>
+        <span key="seconds" style={timer10Style}>
+          {seconds}
+        </span>
+      </div>
+    );
   };
   return <div>{getFormattedTime(time)}</div>;
 };

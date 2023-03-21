@@ -13,7 +13,10 @@ export const getCars = async (setCars, data) => {
     const { name, category, price, isRented } = data || {};
 
     if (typeof data === "undefined") {
-      const result = await api.get(`/admin/v2/car?name=&category=&isRented=&minPrice=&maxPrice=`, header);
+      const result = await api.get(
+        `/admin/v2/car?name=&category=&isRented=&minPrice=&maxPrice=`,
+        header
+      );
       setCars(result.data.cars);
     } else {
       const priceSplit = price?.split("-");

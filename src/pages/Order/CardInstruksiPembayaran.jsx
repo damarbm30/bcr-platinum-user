@@ -49,11 +49,10 @@ export default function CardInstruksiPembayaran({ metodePembayaranfunction }) {
 
   return (
     <div>
-      <div>
-        <p>
-          <strong>Intruksi Pembayaran</strong>
-        </p>
-      </div>
+      <p>
+        <strong>Intruksi Pembayaran</strong>
+      </p>
+
       <Box sx={{ width: "100%" }}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs
@@ -69,79 +68,69 @@ export default function CardInstruksiPembayaran({ metodePembayaranfunction }) {
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
-          <ul>
-            <li>Masukkan kartu ATM</li>
-            <li>
-              lalu PIN Pilih menu “Transaksi Lainnya” – ‘Transfer” – “Ke Rek{" "}
-              {metodePembayaran} Virtual Account”
-            </li>
-            <li>
-              Masukkan nomor {metodePembayaran} Virtual Account: 70020+Order ID
-              Contoh: No. Peserta: 12345678, maka ditulis 7002012345678
-            </li>
-            <li>
-              Layar ATM akan menampilkan konfirmasi, ikuti instruksi untuk
-              menyelesaikan transaksi
-            </li>
-            <li>Ambil dan simpanlah bukti transaksi tersebut</li>
-          </ul>
+          <li>Masukkan kartu ATM</li>
+          <li>
+            lalu PIN Pilih menu “Transaksi Lainnya” – ‘Transfer” – “Ke Rek{" "}
+            {metodePembayaran} Virtual Account”
+          </li>
+          <li>
+            Masukkan nomor {metodePembayaran} Virtual Account: 70020+Order ID
+            Contoh: No. Peserta: 12345678, maka ditulis 7002012345678
+          </li>
+          <li>
+            Layar ATM akan menampilkan konfirmasi, ikuti instruksi untuk
+            menyelesaikan transaksi
+          </li>
+          <li>Ambil dan simpanlah bukti transaksi tersebut</li>
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <ul>
-            <li>Login dengan akun Mbanking Anda.</li>
-            <li>
-              Pilih menu “m-Transfer”, pilih “{metodePembayaran} Virtual
-              Account”
-            </li>
-            <li>Input Kode Virtual Account: 39107+20+NRP.</li>
-            <li>
-              Klik menu “Simpan Daftar Transfer” untuk menyimpan nomor
-              pembayaran mahasiswa.
-            </li>
-            <li>Klik OK kemudian Kirim/Send.</li>
-            <li>Input PIN {metodePembayaran} untuk mengotorisasi.</li>
-          </ul>
+          <li>Login dengan akun Mbanking Anda.</li>
+          <li>
+            Pilih menu “m-Transfer”, pilih “{metodePembayaran} Virtual Account”
+          </li>
+          <li>Input Kode Virtual Account: 39107+20+NRP.</li>
+          <li>
+            Klik menu “Simpan Daftar Transfer” untuk menyimpan nomor pembayaran
+            mahasiswa.
+          </li>
+          <li>Klik OK kemudian Kirim/Send.</li>
+          <li>Input PIN {metodePembayaran} untuk mengotorisasi.</li>
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <ul>
-            <li>Masukkan produk ke Keranjang Belanja.</li>
-            <li>
-              Pilih metode pembayaran Klik{metodePembayaran}, lalu klik
-              Checkout.
-            </li>
-            <li>
-              Pada halaman ringkasan pembayaran masukkan User ID KlikBCA kamu,
-              lalu pilih Bayar Sekarang.
-            </li>
-            <li>
-              Masuk ke akun Klik{metodePembayaran} lewat halaman Klik
-              {metodePembayaran}.
-            </li>
-            <li>Pilih menu Pembayaran e-Commerce.</li>
-          </ul>
+          <li>Masukkan produk ke Keranjang Belanja.</li>
+          <li>
+            Pilih metode pembayaran Klik{metodePembayaran}, lalu klik Checkout.
+          </li>
+          <li>
+            Pada halaman ringkasan pembayaran masukkan User ID KlikBCA kamu,
+            lalu pilih Bayar Sekarang.
+          </li>
+          <li>
+            Masuk ke akun Klik{metodePembayaran} lewat halaman Klik
+            {metodePembayaran}.
+          </li>
+          <li>Pilih menu Pembayaran e-Commerce.</li>
         </TabPanel>
         <TabPanel value={value} index={3}>
-          <ul>
-            <li>Login ke akun Internet Banking {metodePembayaran}</li>
-            <li>Pilih menu Pembayaran</li>
-            <li>
-              Pilih menu {metodePembayaran} lalu Anda akan diarahkan pada layar
-              "Pengisian Data"
-            </li>
-            <li>
-              Masukkan 18 digit nomor rekening Virtual Account pesanan Anda
-              kemudian klik "Kirim"
-            </li>
-            <li>
-              Periksa kembali data pembayaran yang muncul pada layar "Konfirmasi
-              Data"
-            </li>
-            <li>
-              Masukkan password serta mToken Internet Banking {metodePembayaran}{" "}
-              Anda kemudian klik "Kirim"
-            </li>
-            <li>Pembayaran selesai, simpan bukti pembayaran Anda</li>
-          </ul>
+          <li>Login ke akun Internet Banking {metodePembayaran}</li>
+          <li>Pilih menu Pembayaran</li>
+          <li>
+            Pilih menu {metodePembayaran} lalu Anda akan diarahkan pada layar
+            "Pengisian Data"
+          </li>
+          <li>
+            Masukkan 18 digit nomor rekening Virtual Account pesanan Anda
+            kemudian klik "Kirim"
+          </li>
+          <li>
+            Periksa kembali data pembayaran yang muncul pada layar "Konfirmasi
+            Data"
+          </li>
+          <li>
+            Masukkan password serta mToken Internet Banking {metodePembayaran}{" "}
+            Anda kemudian klik "Kirim"
+          </li>
+          <li>Pembayaran selesai, simpan bukti pembayaran Anda</li>
         </TabPanel>
       </Box>
     </div>
