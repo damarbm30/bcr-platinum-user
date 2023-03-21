@@ -8,8 +8,12 @@ import InputAdornment from "@mui/material/InputAdornment";
 import CardInstruksiPembayaran from "./CardInstruksiPembayaran";
 import "./Order.css";
 
-const StepPilihMetodeBayar = ({ metodePembayaranfunction }) => {
+const StepPilihMetodeBayar = ({
+  metodePembayaranfunction,
+  hargaTotalBayar,
+}) => {
   let metodePembayaran = metodePembayaranfunction;
+  const hargaTotal = hargaTotalBayar;
 
   return (
     <div>
@@ -22,7 +26,7 @@ const StepPilihMetodeBayar = ({ metodePembayaranfunction }) => {
             <p className="pt24">Rabu, 19 Mei 2022 jam 13.00 WIB</p>
           </div>
           <div className="timer24">
-            <Timer24 duration={1 * 24 * 60 * 60 * 1000} />
+            <Timer24 duration={24 * 60 * 60 * 1000} />
           </div>
         </div>
         <div className="card menu-lakukan-trasnfer">
@@ -68,12 +72,12 @@ const StepPilihMetodeBayar = ({ metodePembayaranfunction }) => {
               <TextField
                 className="text_field_edit"
                 id="outlined-read-only-input"
-                defaultValue="total harga"
+                defaultValue={hargaTotal}
                 InputProps={{
                   readOnly: true,
                   endAdornment: (
                     <InputAdornment position="end">
-                      <CopyToClipboard text="total harga">
+                      <CopyToClipboard text={hargaTotal}>
                         <Button>
                           <img src={icon_copy} alt="icon_copy" />
                         </Button>

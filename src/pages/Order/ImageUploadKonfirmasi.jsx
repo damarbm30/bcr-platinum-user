@@ -2,41 +2,49 @@ import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import { upload_gambar } from "../../assets";
 import { isEmpty } from "lodash";
+// import useUpload from "../../store/Upload";
+// const setUploadPic = useUpload((state) => state.setUploadPic);
+// setUploadPic({ putCar: putCar });
+// const uploadPic = useUpload((state) => state.uploadPic);
+// console.log(uploadPic);
 
-const KonfirmasiPembayaran = ({ handleNextNext }) => {
-  // async function upload() {
-  //   console.log(values);
-  //   await fetch(
-  //     "https://bootcamp-rent-cars.herokuapp.com/customer/order",
-  //     {
-  //       method: "POST",
-  //       body: JSON.stringify(values),
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Accept: "application/json",
-  //       },
-  //     }
-  //   )
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       navigate("/");
-  //     });
-  //   result = await result.json();
-
-  //   console.warn("result", result);
-  // }
-  // const [values, setValues] = useState({
-  //   start_rent_at: "2022-10-05",
-  //   finish_rent_at: "2022-10-12",
-  //   car_id: 1,
-  // });
-
+const KonfirmasiPembayaran = ({ handleNextNext, orderId, saveSlipData }) => {
   const handleNextOke = handleNextNext;
 
   const [image, setImage] = useState(null);
-
   const [activeStepUpload, setActiveStepUpload] = useState(0);
   const [skippedStepsUpload, setSkippedStepsUpload] = useState([]);
+  const [imageFiles, setImageFiles] = useState(null);
+  const [putCar, setPutCar] = useState();
+
+  async function upload() {
+    const id = orderId;
+    const url = `https://bootcamp-rent-cars.herokuapp.com/customer/order/${id}/slip`;
+    console.log(id);
+    const file = imageFiles;
+    const formData = new FormData();
+    formData.append("slip", file);
+    formData.append("type", "image/png");
+    console.log(file);
+    await fetch(url, {
+      method: "PUT",
+      headers: {
+        accept: "application/json",
+        access_token:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJjci5pbyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTY2NTI0MjUwOX0.ZTx8L1MqJ4Az8KzoeYU2S614EQPnqk6Owv03PUSnkzc",
+      },
+      body: formData,
+    })
+      .then((response) => response.json()) // convert response to JSON format
+      .then((data) => {
+        console.log(data);
+        setPutCar(data);
+        saveSlipData(data.slip);
+      })
+      .catch((error) => console.error(error));
+  }
+
+  console.log(putCar);
 
   const handleNextUpload = () => {
     setActiveStepUpload(activeStepUpload + 1);
@@ -44,6 +52,11 @@ const KonfirmasiPembayaran = ({ handleNextNext }) => {
       skippedStepsUpload.filter((skipItem) => skipItem !== activeStepUpload)
     );
   };
+
+  function nextAndUpload() {
+    handleNextUpload();
+    upload();
+  }
 
   function getStepContent(step) {
     switch (step) {
@@ -53,12 +66,15 @@ const KonfirmasiPembayaran = ({ handleNextNext }) => {
             <div className="upload-gambar-step">
               <form
                 onClick={() => document.querySelector(".input-field").click()}
+                // onSubmit={upload()}
               >
                 <input
+                  id="fileInput"
                   type="file"
                   className="input-field"
                   onChange={({ target: { files } }) => {
                     files[0];
+                    setImageFiles(files[0]);
                     if (files) {
                       setImage(URL.createObjectURL(files[0]));
                     }
@@ -67,7 +83,7 @@ const KonfirmasiPembayaran = ({ handleNextNext }) => {
                   hidden
                 />
                 {image ? (
-                  <img src={image} alt="image" style={{ width: "296px" }} />
+                  <img src={image} alt="image" style={{ height: "162px" }} />
                 ) : (
                   <img
                     src={upload_gambar}
@@ -77,6 +93,7 @@ const KonfirmasiPembayaran = ({ handleNextNext }) => {
                 )}
               </form>
             </div>
+            {/* <div>{carId}</div> */}
             <Button
               style={{ width: "100%", marginTop: "24px" }}
               role="button"
@@ -84,8 +101,7 @@ const KonfirmasiPembayaran = ({ handleNextNext }) => {
               variant="contained"
               color="success"
               disabled={isEmpty(image)}
-              onClick={handleNextUpload}
-              // onSubmit={upload}
+              onClick={nextAndUpload}
             >
               Upload
             </Button>
@@ -95,7 +111,7 @@ const KonfirmasiPembayaran = ({ handleNextNext }) => {
         return (
           <>
             <div className="upload-gambar-step">
-              <img src={image} alt="image" style={{ width: "296px" }} />
+              <img src={image} alt="image" style={{ height: "162px" }} />
             </div>
             <Button
               style={{ width: "100%", marginTop: "24px" }}
@@ -113,7 +129,6 @@ const KonfirmasiPembayaran = ({ handleNextNext }) => {
         return "unknown step";
     }
   }
-
   return (
     <>
       <div>{getStepContent(activeStepUpload)}</div>
