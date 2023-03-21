@@ -24,7 +24,7 @@ const SignUp = () => {
     )
       .then((response) => response.json())
       .then((data) => {
-        navigate("/");
+        navigate("/login");
       });
     result = await result.json();
 
