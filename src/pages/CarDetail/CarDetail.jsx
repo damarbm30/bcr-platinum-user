@@ -5,8 +5,10 @@ import { Header, Search } from "../../components";
 import { useState } from "react";
 import usePayment from "../../store/Pembayaran";
 import useCar from "../../store/Data";
+import { useNavigate } from "react-router-dom";
 
 const CarDetail = ({ cars, setCars, isFiltered }) => {
+  const navigate = useNavigate();
   const { carId } = useParams();
 
   const car = cars.find((car) => car.id.toString() === carId);
@@ -33,6 +35,7 @@ const CarDetail = ({ cars, setCars, isFiltered }) => {
 
   const handleSubmit = () => {
     setCarRent({ start: start, last: end });
+    navigate("/order");
     console.log(start.$y, start.$M, start.$D);
     console.log(end.$y, end.$M, end.$D);
   };
