@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { users } from "../../assets";
 import Picker from "./DatePicker/Picker";
-import { Header, Search } from "../../components";
+import { Header, Search, Navbar } from "../../components";
 import { useState } from "react";
 import usePayment from "../../store/Pembayaran";
 import useCar from "../../store/Data";

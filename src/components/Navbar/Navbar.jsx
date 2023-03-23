@@ -1,10 +1,18 @@
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
-
+import { doLogout } from "../../action/Auth";
 import { logo } from "../../assets";
 import "./Navbar.css";
+import { useNavigate } from "react-router-dom";
+import useProfile from "../../store/userProfile";
 
 const Navbar = () => {
+  const { email, setProfile } = useProfile((state) => state);
+  const navigate = useNavigate();
+  const logOut = () => {
+    doLogout();
+    navigate("/login");
+  };
   return (
     <nav className="navbar navbar-expand-lg sticky-top py-3 shadow-md-sm">
       <div className="container-fluid justify-content-start-md">
@@ -50,14 +58,25 @@ const Navbar = () => {
                 FAQ
               </HashLink>
             </li>
-            <li className="nav-item">
-              <Link
-                className="nav-link btn btn-success text-white"
-                to="/sign-up"
-              >
-                Register
-              </Link>
-            </li>
+            {localStorage.getItem("userInfo") ? (
+              <div>
+                <li
+                  className="nav-link btn btn-success text-white"
+                  onClick={logOut}
+                >
+                  {email}
+                </li>
+              </div>
+            ) : (
+              <li className="nav-item">
+                <Link
+                  className="nav-link btn btn-success text-white"
+                  to="/sign-up"
+                >
+                  Register
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>
