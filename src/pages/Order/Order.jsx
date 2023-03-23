@@ -266,7 +266,7 @@ const Order = () => {
               </div>
               <div className="card cara-pembayaran-right">
                 <p>
-                  <strong>{currentCar.name}</strong>
+                  <strong style={{ fontSize: 16 }}>{currentCar.name}</strong>
                 </p>
                 <p>
                   <img src={users} alt="users" /> {peopleCap}
@@ -309,7 +309,7 @@ const Order = () => {
                     <li>Tol dan parkir</li>
                   </ul>
                   <p>
-                    <strong>Total</strong>
+                    <strong style={{ marginRight: 4 }}>Total</strong>
                     {formattedPrice}
                   </p>
                 </div>
