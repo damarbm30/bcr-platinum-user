@@ -26,6 +26,15 @@
   border-radius: 2px;
   border: 0px;
 }
+.register-pic {
+  height: 900px;
+  width: 720px;
+}
+.kutak {
+  height: 34px;
+  width: 100px;
+}
+
 @media only screen and (max-width: 768px) {
   .halfpic {
     display: none;
