@@ -46,51 +46,26 @@ const Footer = () => {
           <p className="fw-bold">Connect with us</p>
           <div className="d-flex gap-3 mt-2 mt-md-3">
             <button className="border-0 bg-transparent cursor-pointer">
-              <img
-                style={{ height: "32px", width: "32px" }}
-                src={facebook}
-                alt="facebook"
-              />
+              <img className="img-link" src={facebook} alt="facebook" />
             </button>
             <button className="border-0 bg-transparent cursor-pointer">
-              <img
-                style={{ height: "32px", width: "32px" }}
-                src={instagram}
-                alt="instagram"
-              />
+              <img className="img-link" src={instagram} alt="instagram" />
             </button>
             <button className="border-0 bg-transparent cursor-pointer">
-              <img
-                style={{ height: "32px", width: "32px" }}
-                src={twitter}
-                alt="twitter"
-              />
+              <img className="img-link" src={twitter} alt="twitter" />
             </button>
             <button className="border-0 bg-transparent cursor-pointer">
-              <img
-                style={{ height: "32px", width: "32px" }}
-                src={mail}
-                alt="mail"
-              />
+              <img className="img-link" src={mail} alt="mail" />
             </button>
             <button className="border-0 bg-transparent cursor-pointer">
-              <img
-                cstyle={{ height: "32px", width: "32px" }}
-                src={twitch}
-                alt="twitch"
-              />
+              <img className="img-link" src={twitch} alt="twitch" />
             </button>
           </div>
         </div>
         <div className="col-md-2 offset-md-1">
           <p className="fw-bold">Copyright Binar 2022</p>
           <Link to="/">
-            <img
-              style={{ Width: "100px", Height: "34px" }}
-              src={logo}
-              alt="logo"
-              className="mt-3"
-            />
+            <img className="img-logoo" src={logo} alt="logo" className="mt-3" />
           </Link>
         </div>
       </div>
