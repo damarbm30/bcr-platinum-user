@@ -60,7 +60,7 @@ const SignUp = () => {
     <div className="fpage">
       <div className="halfform">
         <div className="jdl">
-          <img src={kutak} alt="register" />
+          <img className="kutak" src={kutak} alt="register" />
           <h1>Sign Up</h1>
         </div>
         <form className="signup" onSubmit={handleValidation}>
@@ -117,7 +117,7 @@ const SignUp = () => {
         </div>
       </div>
       <div className="halfpic">
-        <img src={register} alt="register" />
+        <img className="register-pic" src={register} alt="register" />
       </div>
     </div>
   );
