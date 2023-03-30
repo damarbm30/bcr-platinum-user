@@ -1,0 +1,10 @@
+.img-smile {
+  height: 428px;
+  width: 459px;
+}
+@media only screen and (max-width: 768px) {
+  .img-smile {
+    height: 250px;
+    width: 300px;
+  }
+}

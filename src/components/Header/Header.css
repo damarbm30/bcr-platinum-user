@@ -10,8 +10,15 @@
 .header__img {
   padding-right: 0 !important;
   margin-right: 0 !important;
+  height: 407px;
+  width: 704px;
 }
-
+@media only screen and (max-width: 768px) {
+  .header__img {
+    height: 225px;
+    width: 400px;
+  }
+}
 /* @media only screen and (max-width: 576px) {
   .header__item {
     margin-left: 0rem !important;
