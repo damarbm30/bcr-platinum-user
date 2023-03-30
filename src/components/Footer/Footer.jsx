@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+import "./Footer.css";
 
 import { facebook, instagram, twitter, mail, twitch, logo } from "../../assets";
 
@@ -65,7 +66,7 @@ const Footer = () => {
         <div className="col-md-2 offset-md-1">
           <p className="fw-bold">Copyright Binar 2022</p>
           <Link to="/">
-            <img className="img-logoo" src={logo} alt="logo" className="mt-3" />
+            <img src={logo} alt="logo" className="mt-3 img-logoo" />
           </Link>
         </div>
       </div>
