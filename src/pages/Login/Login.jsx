@@ -74,7 +74,7 @@ const Login = () => {
     <div className="fpage">
       <div className="halfform">
         <div className="jdl">
-          <img src={kutak} alt="SignIn" />
+          <img className="kutak" src={kutak} alt="SignIn" />
           <h1>Welcome Back!</h1>
         </div>
         <form className="login" onSubmit={handleLogin}>
@@ -120,7 +120,7 @@ const Login = () => {
         </div>
       </div>
       <div className="halfpic">
-        <img src={register} alt="register" />
+        <img className="register-pic" src={register} alt="register" />
       </div>
     </div>
   );
