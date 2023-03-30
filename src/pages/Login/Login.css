@@ -20,6 +20,14 @@
   margin-top: 10px;
   padding: 10px 20px;
 }
+.register-pic {
+  height: 900px;
+  width: 720px;
+}
+.kutak {
+  height: 34px;
+  width: 100px;
+}
 @media only screen and (max-width: 768px) {
   .halfpic {
     display: none;
@@ -31,5 +39,8 @@
   }
   .inputform {
     margin-bottom: 10px;
+  }
+  .kutak {
+    width: 3.5rem;
   }
 }
