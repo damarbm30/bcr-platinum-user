@@ -2,15 +2,14 @@ import React, { useState } from "react";
 import Timer10 from "./Timer10";
 import ImageUploadKonfirmasi from "./ImageUploadKonfirmasi";
 import Button from "@mui/material/Button";
-import "./Order.css";
+import "../Order.css";
 
 const CardKonfirmasiPembayaran = ({
   handleNextbutton,
-  orderId,
+  saveIdPutAPI,
   saveSlipData,
 }) => {
-  const handleNext = handleNextbutton;
-  const orderIdPut = orderId;
+  // const saveIdPutAPI = saveIdPutAPI;
 
   const [activeStepKonfirmasi, setActiveStepKonfirmasi] = useState(0);
   const [skippedStepsKonfirmasi, setSkippedStepsKonfirmasi] = useState([]);
@@ -71,8 +70,8 @@ const CardKonfirmasiPembayaran = ({
               </div>
               <div className="upload-gambar">
                 <ImageUploadKonfirmasi
-                  handleNextNext={handleNext}
-                  orderId={orderIdPut}
+                  handleNextbutton={handleNextbutton}
+                  saveIdPutAPI={saveIdPutAPI}
                   saveSlipData={saveSlipData}
                 />
               </div>
