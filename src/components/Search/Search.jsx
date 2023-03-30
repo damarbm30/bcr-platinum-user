@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { getCars } from "../../services/carServices";
 import { debounce } from "lodash";
-import { useMemo } from "react";
+import { useCallback } from "react";
 import "./Search.css";
 
 const Search = ({
@@ -13,13 +13,13 @@ const Search = ({
 }) => {
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = useCallback((data) => {
     setIsFiltered(true);
     setSearchFocus(false);
     console.log("line 19", data);
     getCars(setCars, data);
     // debounce(getCars(setCars, data), 2000);
-  };
+  }, []);
 
   return (
     <form

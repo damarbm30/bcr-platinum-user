@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from "@mui/material/Button";
-import { upload_gambar } from "../../assets";
+import { upload_gambar } from "~/assets";
 import { isEmpty } from "lodash";
 // import useUpload from "../../store/Upload";
 // const setUploadPic = useUpload((state) => state.setUploadPic);
@@ -8,9 +8,11 @@ import { isEmpty } from "lodash";
 // const uploadPic = useUpload((state) => state.uploadPic);
 // console.log(uploadPic);
 
-const KonfirmasiPembayaran = ({ handleNextNext, orderId, saveSlipData }) => {
-  const handleNextOke = handleNextNext;
-
+const KonfirmasiPembayaran = ({
+  handleNextbutton,
+  saveIdPutAPI,
+  saveSlipData,
+}) => {
   const [image, setImage] = useState(null);
   const [activeStepUpload, setActiveStepUpload] = useState(0);
   const [skippedStepsUpload, setSkippedStepsUpload] = useState([]);
@@ -18,7 +20,7 @@ const KonfirmasiPembayaran = ({ handleNextNext, orderId, saveSlipData }) => {
   const [putCar, setPutCar] = useState();
 
   async function upload() {
-    const id = orderId;
+    const id = saveIdPutAPI;
     const url = `https://bootcamp-rent-cars.herokuapp.com/customer/order/${id}/slip`;
     console.log(id);
     const file = imageFiles;
@@ -119,7 +121,7 @@ const KonfirmasiPembayaran = ({ handleNextNext, orderId, saveSlipData }) => {
               type="submit"
               variant="contained"
               color="success"
-              onClick={handleNextOke}
+              onClick={handleNextbutton}
             >
               Konfirmasi
             </Button>
