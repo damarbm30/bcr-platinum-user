@@ -100,8 +100,8 @@ const Order = () => {
           <>
             <Step11PilihBank
               saveIdPutAPI={handleSaveIdPutAPI}
-              totalPrice={handletotalPrice}
-              metodeBayar={handleMetodeBayar}
+              displayTotalPrice={handletotalPrice}
+              displayMetodeBayar={handleMetodeBayar}
               handleNextbutton={handleNext}
             />
           </>
