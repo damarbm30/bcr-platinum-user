@@ -1,20 +1,14 @@
 import React from "react";
-import { icon_copy } from "../../assets";
+import { icon_copy } from "~/assets";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
 import Timer24 from "./Timer24";
 import CopyToClipboard from "react-copy-to-clipboard";
 import InputAdornment from "@mui/material/InputAdornment";
 import CardInstruksiPembayaran from "./CardInstruksiPembayaran";
-import "./Order.css";
+import "../Order.css";
 
-const StepPilihMetodeBayar = ({
-  metodePembayaranfunction,
-  hargaTotalBayar,
-}) => {
-  let metodePembayaran = metodePembayaranfunction;
-  const hargaTotal = hargaTotalBayar;
-
+const StepPilihMetodeBayar = ({ metodeBayar, totalPrice }) => {
   return (
     <div>
       <div className=".cara-pembayaran-left-tahap-2">
@@ -38,11 +32,11 @@ const StepPilihMetodeBayar = ({
           <div>
             <div>
               <button role="button" type="submit" className="tombol-pilih-atm">
-                {metodePembayaran}
+                {metodeBayar}
               </button>
             </div>
             <div>
-              <p>{metodePembayaran} Transfer</p>
+              <p>{metodeBayar} Transfer</p>
               <p>a.n Binar Car Rental</p>
             </div>
           </div>
@@ -72,12 +66,12 @@ const StepPilihMetodeBayar = ({
               <TextField
                 className="text_field_edit"
                 id="outlined-read-only-input"
-                defaultValue={hargaTotal}
+                defaultValue={totalPrice}
                 InputProps={{
                   readOnly: true,
                   endAdornment: (
                     <InputAdornment position="end">
-                      <CopyToClipboard text={hargaTotal}>
+                      <CopyToClipboard text={totalPrice}>
                         <Button>
                           <img src={icon_copy} alt="icon_copy" />
                         </Button>
@@ -90,9 +84,7 @@ const StepPilihMetodeBayar = ({
           </div>
         </div>
         <div className="card instruksi-pembayaran">
-          <CardInstruksiPembayaran
-            metodePembayaranfunction={metodePembayaran}
-          />
+          <CardInstruksiPembayaran metodeBayar={metodeBayar} />
         </div>
       </div>
     </div>

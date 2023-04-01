@@ -1,11 +1,13 @@
 import { useParams } from "react-router-dom";
-import { users } from "../../assets";
+import { users } from "~/assets";
 import Picker from "./DatePicker/Picker";
-import { Header, Search, Navbar } from "../../components";
+import { Header, Search, Navbar } from "~/components";
 import { useState } from "react";
-import usePayment from "../../store/Pembayaran";
-import useCar from "../../store/Data";
+import usePayment from "~/store/Pembayaran";
+import useCar from "~/store/Data";
 import { useNavigate } from "react-router-dom";
+import { getCategory } from "~/utils/global";
+import { formatter } from "~/utils/global";
 
 const CarDetail = ({ cars, setCars, isFiltered }) => {
   const navigate = useNavigate();
@@ -40,26 +42,8 @@ const CarDetail = ({ cars, setCars, isFiltered }) => {
     console.log(end.$y, end.$M, end.$D);
   };
 
-  const formatter = new Intl.NumberFormat("id-ID", {
-    style: "currency",
-    currency: "IDR",
-    minimumFractionDigits: 0,
-  });
-
   const formattedPrice = formatter.format(price);
-  let peopleCap;
-
-  switch (category) {
-    case "small":
-      peopleCap = "2 - 4 orang";
-      break;
-    case "Medium":
-      peopleCap = "4-6 orang";
-      break;
-    case "large":
-      peopleCap = "6-8 orang";
-      break;
-  }
+  const peopleCap = getCategory(category.toLowerCase());
 
   return (
     <>

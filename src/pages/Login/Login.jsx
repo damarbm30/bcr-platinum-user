@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import "./Login.css";
 import { Link } from "react-router-dom";
 import useProfile from "../../store/userProfile";
+// import { debounce } from "lodash";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -57,7 +58,7 @@ const Login = () => {
     console.log(values);
   };
 
-  function handleLogin(e) {
+  const handleLogin = (e) => {
     e.preventDefault();
     console.log("masuk");
     const error = Validation(values);
@@ -67,13 +68,13 @@ const Login = () => {
     } else {
       setErrors(error);
     }
-  }
+  };
 
   return (
     <div className="fpage">
       <div className="halfform">
         <div className="jdl">
-          <img src={kutak} alt="SignIn" />
+          <img className="kutak" src={kutak} alt="SignIn" />
           <h1>Welcome Back!</h1>
         </div>
         <form className="login" onSubmit={handleLogin}>
@@ -119,7 +120,7 @@ const Login = () => {
         </div>
       </div>
       <div className="halfpic">
-        <img src={register} alt="register" />
+        <img className="register-pic" src={register} alt="register" />
       </div>
     </div>
   );

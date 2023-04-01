@@ -26,16 +26,28 @@
   border-radius: 2px;
   border: 0px;
 }
+.register-pic {
+  height: 900px;
+  width: 720px;
+}
+.kutak {
+  height: 34px;
+  width: 100px;
+}
+
 @media only screen and (max-width: 768px) {
   .halfpic {
     display: none;
   }
   .halfform {
     width: 100%;
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
   .inputform {
     margin-bottom: 10px;
+  }
+  .kutak {
+    width: 3.5rem;
   }
 }
