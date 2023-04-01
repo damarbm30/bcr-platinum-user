@@ -23,18 +23,36 @@ const Testimonial = () => {
   }, []);
 
   return (
-    <section id="testimonial" className="container-fluid section-pt testimonial">
+    <section
+      id="testimonial"
+      className="container-fluid section-pt testimonial"
+    >
       <div className="text-center">
         <h2 className="fw-bold mb-3">Testimonial</h2>
-        <p className="fw-bold mb-5">Berbagai review positif dari pelanggan kami</p>
+        <p className="fw-bold mb-5">
+          Berbagai review positif dari pelanggan kami
+        </p>
       </div>
-      <div id="carouselExampleControls" className="carousel carousel-dark slide" data-bs-ride="false">
-        <div className="carousel-inner overflow-visible" role="listbox">
+      <div
+        id="carouselExampleControls"
+        className="carousel carousel-dark slide"
+        data-bs-ride="false"
+      >
+        <div
+          className="carousel-inner overflow-visible"
+          role="listbox"
+          aria-label="Testimonial of Users"
+        >
           {testimonials?.map((testimonial) => {
             const { id, avatar, body, info, isActive } = testimonial;
             return (
-              <div className={`carousel-item ${isActive === "active" ? "active" : ""}`} key={id}>
-                <TestimonialCard id={id} avatar={avatar} body={body} info={info} />
+              <div
+                className={`carousel-item ${
+                  isActive === "active" ? "active" : ""
+                }`}
+                key={id}
+              >
+                <TestimonialCard {...testimonial} />
               </div>
             );
           })}
@@ -46,7 +64,10 @@ const Testimonial = () => {
             data-bs-target="#carouselExampleControls"
             data-bs-slide="prev"
           >
-            <span className="carousel-control-prev-icon rounded-circle" aria-hidden="true"></span>
+            <span
+              className="carousel-control-prev-icon rounded-circle"
+              aria-hidden="true"
+            ></span>
             <span className="visually-hidden">Previous</span>
           </button>
           <button
@@ -55,7 +76,10 @@ const Testimonial = () => {
             data-bs-target="#carouselExampleControls"
             data-bs-slide="next"
           >
-            <span className="carousel-control-next-icon rounded-circle" aria-hidden="true"></span>
+            <span
+              className="carousel-control-next-icon rounded-circle"
+              aria-hidden="true"
+            ></span>
             <span className="visually-hidden">Next</span>
           </button>
         </div>

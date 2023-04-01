@@ -1,22 +1,15 @@
 import { useState } from "react";
-import { Navbar } from "../../components";
 import { Header, Search } from "../../components";
 import CarList from "./CarList";
 import "./Cars.css";
-
-const Cars = ({ cars, setCars, isFiltered, setIsFiltered }) => {
+const Cars = (props) => {
   const [searchFocus, setSearchFocus] = useState(false);
 
   return (
     <main>
-      <Header isFiltered={isFiltered} />
-      <Search
-        setCars={setCars}
-        setIsFiltered={setIsFiltered}
-        isFiltered={isFiltered}
-        setSearchFocus={setSearchFocus}
-      />
-      <CarList cars={cars} setCars={setCars} />
+      <Header isFiltered={props.isFiltered} />
+      <Search {...props} setSearchFocus={setSearchFocus} />
+      <CarList {...props} />
       {/* <div className={`${searchFocus ? "overlay" : ""}`}></div> */}
     </main>
   );
