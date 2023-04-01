@@ -11,6 +11,7 @@ function App() {
   const [cars, setCars] = useState([]);
   const [isFiltered, setIsFiltered] = useState(false);
 
+  const params = { cars, setCars, isFiltered, setIsFiltered };
   return (
     <>
       <Routes>
@@ -21,29 +22,8 @@ function App() {
         </Route>
         <Route element={<ProtectedRoutes />}>
           <Route index path="/order" element={<Order />} />
-          <Route
-            exact
-            path="/cars"
-            element={
-              <Cars
-                cars={cars}
-                setCars={setCars}
-                isFiltered={isFiltered}
-                setIsFiltered={setIsFiltered}
-              />
-            }
-          />
-          <Route
-            index
-            path="/car/:carId"
-            element={
-              <CarDetail
-                cars={cars}
-                setCars={setCars}
-                isFiltered={isFiltered}
-              />
-            }
-          />
+          <Route exact path="/cars" element={<Cars {...params} />} />
+          <Route index path="/car/:carId" element={<CarDetail {...params} />} />
         </Route>
       </Routes>
       <Footer />

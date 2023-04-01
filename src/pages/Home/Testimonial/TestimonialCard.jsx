@@ -1,6 +1,8 @@
 import "./Testimonial.css";
 
-const TestimonialCard = ({ avatar, body, info }) => {
+const TestimonialCard = (props) => {
+  console.log("props", props);
+  const { avatar, body, info } = props;
   return (
     <div className="col-lg-4 col-md-6 col-sm-12">
       <div className="card testimonial-card mx-4">
