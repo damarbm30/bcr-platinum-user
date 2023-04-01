@@ -13,6 +13,9 @@
   height: 407px;
   width: 704px;
 }
+.btn-clr {
+  color: #f4f4f5 !important;
+}
 @media only screen and (max-width: 768px) {
   .header__img {
     height: 225px;
