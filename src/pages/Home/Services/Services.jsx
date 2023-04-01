@@ -4,7 +4,7 @@ import "./Services.css";
 const ItemList = ({ children }) => {
   return (
     <li className="d-flex align-items-center gap-3 mb-3">
-      <img src={check} alt="check" />
+      <img src={check} alt="check" width={24} height={24} />
       <p className="mb-0 fw-bold">{children}</p>
     </li>
   );
