@@ -17,7 +17,7 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-lg sticky-top py-3 shadow-md-sm">
       <div className="container-fluid justify-content-start-md">
         <Link to="/" className="navbar-brand d-none d-sm-block offset-md-1">
-          <img src={logo} alt="logo" />
+          <img src={logo} alt="logo" width={100} height={34} />
         </Link>
         <Link
           to="/"
