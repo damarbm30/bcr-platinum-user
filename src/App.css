@@ -3,6 +3,8 @@
   --green: rgba(92, 184, 95, 1);
   --green-50: rgba(92, 184, 95, 0.5);
   --blue: #0d28a6;
+  --zinc: rgb(244 244 245);
+  --green-600: rgb(22 163 74);
 }
 
 body {
@@ -29,7 +31,7 @@ h2 {
 }
 
 .btn-green {
-  background-color: var(--green) !important;
+  background-color: var(--green-600) !important;
 }
 
 .btn-green:hover {
