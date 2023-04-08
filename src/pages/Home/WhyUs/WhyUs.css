@@ -1,0 +1,16 @@
+.information {
+  position: relative;
+  width: inherit;
+  top: 35px;
+  height: 150px;
+}
+
+.imageJoe {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+.card-body {
+  position: relative;
+  display: flex;
+}
