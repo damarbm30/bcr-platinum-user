@@ -6,10 +6,10 @@ const Header = ({ isHome, isFiltered }) => {
   return (
     <>
       <header className="header">
-        <div className="container-fluid">
+        <div className="container-fluid ">
           {!isFiltered ? (
-            <div className="row align-items-center justify-content-end">
-              <div className="header__item col-12 col-md offset-1">
+            <div className="row align-items-center justify-content-end ">
+              <div className="header__item col-12 col-md offset-1 head-left">
                 <h1 className="fw-bold">
                   Sewa & Rental Mobil Terbaik di kawasan Yogyakarta
                 </h1>
@@ -32,7 +32,7 @@ const Header = ({ isHome, isFiltered }) => {
               <img
                 src={car}
                 alt="car"
-                className="col-12 col-md-6 header__img"
+                className="col-12 col-md-6 header__img head-right"
               />
             </div>
           ) : (
