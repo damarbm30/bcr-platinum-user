@@ -1,8 +1,21 @@
 .header {
   background-color: var(--bgColor);
   min-height: 200px;
+  position: relative;
+  height: 400px;
 }
-
+.head-left {
+  position: absolute;
+  top: 0px;
+  width: 50%;
+  left: 0px;
+}
+.head-right {
+  position: absolute;
+  top: 0px;
+  width: 50%;
+  right: 0px;
+}
 .header__item {
   padding-left: 0.5em !important;
 }
@@ -20,8 +33,21 @@
   .header__img {
     height: 225px;
     width: 400px;
+    position: relative;
   }
+  .header {
+    height: 500px;
 }
+  .head-left {
+    position: absolute;
+    width: 100%;
+  }
+  .head-right {
+    position: absolute;
+    top: 280px;
+    width: 100%;
+}
+
 /* @media only screen and (max-width: 576px) {
   .header__item {
     margin-left: 0rem !important;
