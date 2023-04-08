@@ -9,14 +9,17 @@ import usePayment from "~/store/Pembayaran";
 import { getCategory } from "~/utils/global";
 import { formatter } from "~/utils/global";
 
-const Step12DetailPesanan = ({ metodePembayaran, handleNext, hargaTotal }) => {
+const Step12DetailPesanan = (props) => {
+  const { metodePembayaran, handleNextbutton, displayTotalPrice, postCarDate } =
+    props;
+  console.log(props);
   const currentCar = useCar((state) => state.currentCar);
   const PaymentAwal = usePayment((state) => state.startRent);
   const PaymentAkhir = usePayment((state) => state.lastRent);
 
   let peopleCap = getCategory(currentCar.category.toLowerCase());
 
-  // console.log("metode pembayaran", metodePembayaran);
+  // console.log("metode pembayaran step12", displayMetodePembayaran);
   const [awalSewa, setAwalSewa] = useState(null); //data from zustand
   const [akhirSewa, setAkhirSewa] = useState(null); //data from zustand
   let jumlahHari = moment(akhirSewa).diff(moment(awalSewa), "days"); //data from zustand
@@ -50,7 +53,7 @@ const Step12DetailPesanan = ({ metodePembayaran, handleNext, hargaTotal }) => {
               <img src={panah_keatas_total} alt="panah_keatas_total" />
             </a>
           </p>
-          <p> {hargaTotal}</p>
+          <p> {displayTotalPrice}</p>
         </div>
         <div className="collapse" id="collapseExample">
           <p>
@@ -77,7 +80,7 @@ const Step12DetailPesanan = ({ metodePembayaran, handleNext, hargaTotal }) => {
           </ul>
           <p>
             <strong>Total</strong>
-            {hargaTotal}
+            {displayTotalPrice}
           </p>
         </div>
         <Button
@@ -87,7 +90,7 @@ const Step12DetailPesanan = ({ metodePembayaran, handleNext, hargaTotal }) => {
           disabled={isEmpty(metodePembayaran)}
           variant="contained"
           color="success"
-          onClick={handleNext}
+          onClick={handleNextbutton}
         >
           Bayar
         </Button>

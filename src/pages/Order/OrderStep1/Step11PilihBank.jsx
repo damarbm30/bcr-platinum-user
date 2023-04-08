@@ -9,12 +9,13 @@ import { getCategory } from "~/utils/global";
 import { formatter } from "~/utils/global";
 import { PaymentContext } from "~/contexts/PaymentProvider";
 
-const Step11PilihBank = ({
-  metodeBayar,
-  totalPrice,
-  saveIdPutAPI,
-  handleNextbutton,
-}) => {
+const Step11PilihBank = (props) => {
+  const {
+    displayMetodeBayar,
+    displayTotalPrice,
+    saveIdPutAPI,
+    handleNextbutton,
+  } = props;
   const { BCA_TRANSFER, BNI_TRANSFER, MANDIRI_TRANSFER } =
     useContext(PaymentContext);
 
@@ -26,12 +27,12 @@ const Step11PilihBank = ({
 
   const [metodePembayaran, setMetodePembayaran] = useState(null);
   console.log("metode pembayaran", metodePembayaran);
-  metodeBayar(metodePembayaran);
+  displayMetodeBayar(metodePembayaran);
   const [awalSewa, setAwalSewa] = useState(null); //data from zustand
   const [akhirSewa, setAkhirSewa] = useState(null); //data from zustand
   const [postCarDate, setPostCarDate] = useState([]); //data from post API
   const [hargaTotal, setHargaTotal] = useState(); //data from post API
-  totalPrice(hargaTotal);
+  displayTotalPrice(hargaTotal);
   // const saveIdPutAPI = JSON.stringify(postCarDate.id);
 
   const beginDatePostAPI =
@@ -177,8 +178,9 @@ const Step11PilihBank = ({
         <Step12DetailPesanan
           postCarDate={postCarDate}
           metodePembayaran={metodePembayaran}
-          handleNext={handleNextbutton}
-          hargaTotal={hargaTotal}
+          // handleNext={handleNextbutton}
+          // hargaTotal={hargaTotal}
+          {...props}
         />
       </div>
     </>
